@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Scinnova IX</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet" />
+
+    <style type="text/tailwindcss">
+        :root {
+            --wood-dark: #1a120b;
+            --parchment: #f4e4bc;
+            --ink: #2b1d0e;
+            --wax-red: #8a1c1c;
+            --gold: #d4af37;
+            --leather: #3e2723;
+        }
+        
+        /* Hide Default Scrollbar */
+        ::-webkit-scrollbar { display: none; }
+        html { scrollbar-width: none; -ms-overflow-style: none; }
+        
+        body {
+            background-color: var(--wood-dark);
+            background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>') 0 24, auto;
+        }
+
+        /* Typography */
+        .font-title { font-family: 'Uncial Antiqua', cursive; }
+        .font-heading { font-family: 'Cinzel', serif; }
+        .font-body { font-family: 'Cormorant Garamond', serif; }
+
+        /* --- GEAR SCROLLBAR --- */
+        .gear-track {
+            position: fixed;
+            left: 20px;
+            top: 10vh;
+            height: 80vh;
+            width: 4px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 2px;
+            z-index: 100;
+        }
+        .gear-thumb {
+            position: absolute;
+            left: -28px;
+            width: 60px;
+            height: 60px;
+            background-image: url('public/Logos/Scinnova Logos/Scinnova Gear Original.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: grab;
+            /* GOLDEN FILTER */
+            filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            touch-action: none;
+        }
+        .gear-thumb:active { cursor: grabbing; }
+
+        /* --- SCROLL CONTAINER --- */
+        .scroll-container {
+            background-color: var(--parchment);
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            position: relative;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 60px 40px;
+        }
+        .scroll-edge-top {
+            position: absolute; top: -28px; left: 0; width: 100%; height: 30px;
+            background: radial-gradient(circle at 10px 15px, transparent 12px, var(--parchment) 13px);
+            background-size: 40px 40px; background-repeat: repeat-x;
+            filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.3));
+        }
+        .scroll-edge-bottom {
+            position: absolute; bottom: -28px; left: 0; width: 100%; height: 30px;
+            background: radial-gradient(circle at 10px -5px, transparent 12px, var(--parchment) 13px);
+            background-size: 40px 40px; background-repeat: repeat-x;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+        }
+
+        /* --- ROYAL TIMER --- */
+        .royal-timer {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(43, 29, 14, 0.05);
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+        .timer-block {
+            text-align: center;
+        }
+        .timer-val {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--wax-red);
+            line-height: 1;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        .timer-label {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 1rem;
+            color: var(--ink);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- ANCIENT TOMES (3D Flip Modules) --- */
+        .tome-container {
+            perspective: 1000px;
+            width: 100%;
+            height: 400px;
+        }
+        .tome {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .tome-container:hover .tome { transform: rotateY(-180deg); }
+        
+        .tome-front, .tome-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 4px 16px 16px 4px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+        }
+        
+        .tome-front {
+            background: linear-gradient(135deg, #3e2723, #271c19);
+            border: 2px solid #5d4037;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background-image: url("https://www.transparenttextures.com/patterns/leather.png");
+        }
+        .tome-front::after {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 2px solid var(--gold);
+            border-radius: 2px 12px 12px 2px;
+            opacity: 0.6;
+        }
+        
+        .tome-back {
+            background: #fdf5e6;
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+            transform: rotateY(180deg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-left: 4px solid #3e2723;
+            overflow-y: auto;
+        }
+
+        .tome-logo {
+            width: 120px; height: 120px; object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)) sepia(0.3);
+            margin-bottom: 1.5rem;
+        }
+        .tome-title {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 2px 2px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+        .tome-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* --- RED WAX SEAL BUTTONS --- */
+        .wax-seal-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #8a1c1c);
+            border: 3px solid #600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.9);
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+        .wax-seal-btn::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px dashed rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+        .wax-seal-btn:hover { transform: scale(1.1); }
+        .join-seal { width: 90px; height: 90px; font-size: 1.2rem; font-weight: bold; }
+
+        /* --- REVAMPED GALLERY: "The Alchemist's Wall" --- */
+        .gallery-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(0,0,0,0.05);
+            border: 1px solid rgba(43, 29, 14, 0.1);
+        }
+        .gallery-frame {
+            position: relative;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transform: rotate(var(--rot));
+            transition: all 0.4s ease;
+        }
+        .gallery-frame:hover {
+            transform: scale(1.1) rotate(0deg) z-index(10);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            z-index: 10;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* FULL COLOR BY DEFAULT */
+            filter: contrast(1.1); 
+            transition: filter 0.4s;
+        }
+        .pin {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #8a1c1c, #300);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+    </style>
+</head>
+
+<body class="min-h-screen">
+
+    <!-- Torchlight Overlay -->
+    <div
+        class="fixed inset-0 pointer-events-none z-50 bg-[radial-gradient(circle_at_50%_50%,transparent_40%,rgba(0,0,0,0.5)_100%)] mix-blend-multiply">
+    </div>
+
+    <!-- Gear Scrollbar -->
+    <div class="gear-track" id="gearTrack">
+        <div class="gear-thumb" id="gearThumb"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-6 items-center">
+        <button class="wax-seal-btn" onclick="scrollRelative(-1)">▲</button>
+        <a href="https://forms.gle/3d5ZJ53XSoavK8ra7" target="_blank" class="wax-seal-btn join-seal">JOIN</a>
+        <button class="wax-seal-btn" onclick="scrollRelative(1)">▼</button>
+    </nav>
+
+    <main>
+        <div class="scroll-container">
+            <div class="scroll-edge-top"></div>
+
+            <!-- 1. HERO -->
+            <section
+                class="scroll-section min-h-[80vh] flex flex-col items-center justify-center text-center border-b-2 border-ink/10 border-dashed pb-16">
+                <img src="public/Logos/Scinnova Logos/Scinnova Text.png"
+                    class="h-32 md:h-48 mb-8 filter sepia opacity-90">
+
+                <h1
+                    class="font-heading text-xl md:text-2xl text-wax-red mb-4 tracking-widest uppercase border-y-2 border-ink/20 py-2 px-8">
+                    Cedar College's International Inter-School Science Olympiad
+                </h1>
+                <p class="font-body text-xl text-ink/70 mb-12 italic">"Igniting Young Minds through Transdisciplinary
+                    Exploration"</p>
+
+                <!-- ROYAL TIMER -->
+                <div class="royal-timer">
+                    <div class="timer-block">
+                        <div id="d" class="timer-val">00</div>
+                        <div class="timer-label">DAYS</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-val">:</div>
+                    </div>
+                    <div class="timer-block">
+                        <div id="h" class="timer-val">00</div>
+                        <div class="timer-label">HOURS</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-val">:</div>
+                    </div>
+                    <div class="timer-block">
+                        <div id="m" class="timer-val">00</div>
+                        <div class="timer-label">MINS</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. ABOUT -->
+            <section class="scroll-section py-20 px-8 md:px-16 border-b-2 border-ink/10 border-dashed">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- FULL COLOR PHOTO -->
+                    <div
+                        class="relative p-2 bg-white shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="public/Pictures/1.jpg" class="w-full h-auto">
+                        <div class="text-center font-heading text-xs mt-2 text-ink/50 tracking-widest uppercase">The
+                            Gathering</div>
+                    </div>
+                    <div class="space-y-6">
+                        <h2 class="font-title text-5xl text-ink">The Legend</h2>
+                        <p class="font-body text-xl text-ink/90 leading-relaxed text-justify">
+                            <span class="text-5xl text-wax-red float-left mr-2 font-title">S</span>cinnova is Cedar
+                            College’s flagship science competition. It is an immersive learning experience that brings
+                            together 60 teams of budding scientists from across Karachi and Pakistan.
+                        </p>
+                        <p class="font-body text-xl text-ink/90 leading-relaxed text-justify">
+                            This year’s Scinnova consists of nine modules, each an intellectual arena representing a
+                            distinct field of science. Together, they showcase how a deep, interdisciplinary
+                            understanding of our world fosters true critical thinking.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. ORGANIZERS (With Quotes) -->
+            <section class="scroll-section py-20 px-8 md:px-16 border-b-2 border-ink/10 border-dashed">
+                <h2 class="font-title text-5xl text-ink mb-16 text-center">The Council</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+
+                    <div class="flex flex-col items-center text-center">
+                        <div
+                            class="w-40 h-40 rounded-full overflow-hidden border-4 border-ink/20 mb-4 hover:border-wax-red transition-colors">
+                            <!-- FULL COLOR PHOTO -->
+                            <img src="public/Pictures/2.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-heading text-xl font-bold">Roque Martin D.Mello</h3>
+                        <p class="text-wax-red text-sm tracking-widest font-bold mb-4">DIRECTOR</p>
+                        <p class="italic text-ink/70 font-body">"Every single piece of information is important."</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <div
+                            class="w-40 h-40 rounded-full overflow-hidden border-4 border-ink/20 mb-4 hover:border-wax-red transition-colors">
+                            <!-- FULL COLOR PHOTO -->
+                            <img src="public/Pictures/3.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-heading text-xl font-bold">Dr Husham Arshad</h3>
+                        <p class="text-wax-red text-sm tracking-widest font-bold mb-4">CO-DIRECTOR</p>
+                        <p class="italic text-ink/70 font-body">"You just need to listen to the inner voices."</p>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center">
+                        <div
+                            class="w-40 h-40 rounded-full overflow-hidden border-4 border-ink/20 mb-4 hover:border-wax-red transition-colors">
+                            <!-- FULL COLOR PHOTO -->
+                            <img src="public/Pictures/4.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-heading text-xl font-bold">Rayyan Dawood</h3>
+                        <p class="text-wax-red text-sm tracking-widest font-bold mb-4">PATRON</p>
+                        <p class="italic text-ink/70 font-body">"Skills can enhance once interest is developed."</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 4. MODULES (ANCIENT TOMES) -->
+            <section class="scroll-section py-20 px-8 md:px-16 border-b-2 border-ink/10 border-dashed">
+                <h2 class="font-title text-5xl text-ink mb-16 text-center">The Nine Tomes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <!-- Tomes (Same as before, just ensuring structure) -->
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/arcanum trans2.png"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Arcanum</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Forensics</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Arcanum</h4>
+                                <p class="tome-desc">Using forensic science, data encryption, and logic puzzles, teams
+                                    tackle scenarios involving cryptographic challenges and crime scene analysis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/illuminatio clean1.png"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Illuminatio</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Chemistry</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Illuminatio</h4>
+                                <p class="tome-desc">Students engage in hands-on experiments, delving into the
+                                    composition and transformation of matter, revealing chemical reactions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/Ptolemy’s logo.PNG"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Ptolemy's</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Mathematics</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Ptolemy's Puzzles</h4>
+                                <p class="tome-desc">Involves complex problem-solving, mathematical modeling, and
+                                    logical puzzles. Students apply algebra and calculus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/Plank_s Paradox .png"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Planck's</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Physics</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Planck's Paradox</h4>
+                                <p class="tome-desc">Brings theoretical physics to life by guiding students through
+                                    paradoxes where common sense meets scientific complexity.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/Asclepius.PNG"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Asclepius</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Biology</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Asclepius</h4>
+                                <p class="tome-desc">A journey into the life sciences. Through dissections, genetic
+                                    analysis, and simulations, participants experience life's complexity.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/Redshift logo.png"
+                                    class="tome-logo">
+                                <h3 class="tome-title">RedShift</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Astrophysics</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">RedShift</h4>
+                                <p class="tome-desc">Immerses students in the mysteries of space. Teams use telescopic
+                                    data and star maps to investigate celestial phenomena.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/Automaton Logo.png"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Automation</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Robotics</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Automation</h4>
+                                <p class="tome-desc">Students apply engineering principles, physics, and coding skills
+                                    to design and program functional robots.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front"><img src="public/Logos/Module Logos/Freud logo.PNG"
+                                    class="tome-logo">
+                                <h3 class="tome-title">Freud's</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Psychology</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Freud's Foresight</h4>
+                                <p class="tome-desc">Focuses on human behavior and cognitive functions. Through
+                                    experimental tasks, students study psychological theories.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tome-container">
+                        <div class="tome">
+                            <div class="tome-front">
+                                <div class="tome-logo flex items-center justify-center"><span
+                                        class="font-title text-6xl text-gold/30">?</span></div>
+                                <h3 class="tome-title">Qwerty</h3>
+                                <p class="text-gold/70 uppercase tracking-widest text-xs mt-2">Decryption</p>
+                            </div>
+                            <div class="tome-back">
+                                <h4 class="font-heading text-xl font-bold mb-4 text-wax-red">Qwerty</h4>
+                                <p class="tome-desc italic">The scrolls for this realm are yet to be written. The enigma
+                                    awaits those patient enough to seek it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. TESTIMONIALS -->
+            <section class="scroll-section py-20 px-8 md:px-16 border-b-2 border-ink/10 border-dashed">
+                <h2 class="font-title text-5xl text-ink mb-16 text-center">Voices of the Realm</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <blockquote class="bg-white/40 p-8 border-l-4 border-wax-red relative">
+                        <span class="absolute top-4 left-4 text-6xl text-ink/10 font-title">“</span>
+                        <p class="font-body text-xl italic mb-4 relative z-10">"SCINNOVA showcases where outstanding
+                            creativity meets exemplary execution, highlighting the remarkable potential of today’s
+                            youth."</p>
+                        <footer class="font-heading font-bold text-right">- Dr. Athar Osama</footer>
+                    </blockquote>
+                    <blockquote class="bg-white/40 p-8 border-l-4 border-wax-red relative">
+                        <span class="absolute top-4 left-4 text-6xl text-ink/10 font-title">“</span>
+                        <p class="font-body text-xl italic mb-4 relative z-10">"SCINNOVA is one of those rare
+                            experiences that you feel proud to be a part of. It’s reassuring to know there is a forum
+                            where fun-loving and curious minds are nurtured."</p>
+                        <footer class="font-heading font-bold text-right">- Dr. Sabieh Anwar</footer>
+                    </blockquote>
+                    <blockquote class="bg-white/40 p-8 border-l-4 border-wax-red relative md:col-span-2">
+                        <span class="absolute top-4 left-4 text-6xl text-ink/10 font-title">“</span>
+                        <p class="font-body text-xl italic mb-4 relative z-10">"SCINNOVA has been a journey of both
+                            challenges and triumphs. We’ve experienced the full spectrum of burnout and success through
+                            countless hours of dedicated work."</p>
+                        <footer class="font-heading font-bold text-right">- Ruhab Iqbal</footer>
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- 6. GALLERY (REVAMPED) -->
+            <section class="scroll-section py-20 px-8 md:px-16">
+                <h2 class="font-title text-5xl text-ink mb-16 text-center">The Alchemist's Wall</h2>
+                <div class="gallery-wall">
+                    <div class="gallery-frame" style="--rot: 2deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/1.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: -1deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/2.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: 3deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/3.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: -2deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/4.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: 1deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/1.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: -3deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/2.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: 2deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/3.jpg" class="gallery-img">
+                    </div>
+                    <div class="gallery-frame" style="--rot: -1deg;">
+                        <div class="pin"></div>
+                        <img src="public/Pictures/4.jpg" class="gallery-img">
+                    </div>
+                </div>
+            </section>
+
+            <div class="scroll-edge-bottom"></div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-12 font-title relative z-10 bg-wood-dark text-parchment">
+            <div class="flex flex-wrap justify-center items-center gap-8 mb-8">
+                <a href="#" class="hover:scale-110 transition-transform"><img
+                        src="public/Logos/Society Logos/CoRDS logo Transparent .PNG"
+                        class="h-16 w-auto filter brightness-0 invert opacity-80 hover:opacity-100"></a>
+                <a href="#" class="hover:scale-110 transition-transform"><img
+                        src="public/Logos/Society Logos/Crew Logo.png"
+                        class="h-20 w-auto filter brightness-0 invert opacity-80 hover:opacity-100"></a>
+                <a href="#" class="hover:scale-110 transition-transform"><img
+                        src="public/Logos/Society Logos/Codes Logo.png"
+                        class="h-20 w-auto filter brightness-0 invert opacity-80 hover:opacity-100"></a>
+                <a href="#" class="hover:scale-110 transition-transform"><img
+                        src="public/Logos/Society Logos/The Juno Circle Logo Color.png"
+                        class="h-16 w-auto filter brightness-0 invert opacity-80 hover:opacity-100"></a>
+            </div>
+            <p class="font-heading text-xs text-white opacity-80">© copyright Cedar CREW</p>
+        </footer>
+    </main>
+
+    <script>
+        // --- COUNTDOWN ---
+        const target = new Date("2026-01-09T08:00:00+05:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            if (diff < 0) {
+                document.getElementById("d").innerText = "00";
+                document.getElementById("h").innerText = "00";
+                document.getElementById("m").innerText = "00";
+                return;
+            }
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("d").innerText = d.toString().padStart(2, '0');
+            document.getElementById("h").innerText = h.toString().padStart(2, '0');
+            document.getElementById("m").innerText = m.toString().padStart(2, '0');
+        }, 1000);
+
+        // --- SCROLLBAR LOGIC ---
+        const track = document.getElementById('gearTrack');
+        const thumb = document.getElementById('gearThumb');
+        let isDragging = false;
+        let startY, startTop;
+
+        function updateThumb() {
+            if (isDragging) return;
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            const trackH = track.clientHeight;
+            const thumbH = thumb.clientHeight;
+            const pct = window.scrollY / docH;
+            const maxTop = trackH - thumbH;
+            const top = pct * maxTop;
+            thumb.style.top = `${top}px`;
+            thumb.style.transform = `rotate(${pct * 720}deg)`;
+        }
+
+        window.addEventListener('scroll', updateThumb);
+        window.addEventListener('resize', updateThumb);
+
+        thumb.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startY = e.clientY;
+            startTop = parseFloat(thumb.style.top || 0);
+            document.body.style.userSelect = 'none';
+            thumb.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const deltaY = e.clientY - startY;
+            const trackH = track.clientHeight;
+            const thumbH = thumb.clientHeight;
+            const maxTop = trackH - thumbH;
+            let newTop = Math.max(0, Math.min(startTop + deltaY, maxTop));
+
+            thumb.style.top = `${newTop}px`;
+            const pct = newTop / maxTop;
+            window.scrollTo(0, pct * (document.documentElement.scrollHeight - window.innerHeight));
+            thumb.style.transform = `rotate(${pct * 720}deg)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.body.style.userSelect = '';
+            thumb.style.cursor = 'grab';
+        });
+
+        updateThumb();
+
+        // --- NAVIGATION ---
+        const sections = document.querySelectorAll('.scroll-section');
+        function scrollRelative(dir) {
+            const center = window.scrollY + window.innerHeight / 2;
+            let current = 0;
+            let min = Infinity;
+            sections.forEach((s, i) => {
+                const rect = s.getBoundingClientRect();
+                const dist = Math.abs((rect.top + window.scrollY + rect.height / 2) - center);
+                if (dist < min) { min = dist; current = i; }
+            });
+            const target = Math.max(0, Math.min(sections.length - 1, current + dir));
+            sections[target].scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
