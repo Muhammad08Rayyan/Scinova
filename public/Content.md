@@ -58,8 +58,6 @@ The description will be added later
 
 ## Testimonials
 
-"SCINNOVA showcases where outstanding creativity meets exemplary execution, highlighting the remarkable potential of today’s youth."
-
 "SCINNOVA is one of those rare experiences that you feel proud to be a part of. It’s reassuring to know there is a forum where fun-loving and curious minds are nurtured to better understand how to integrate real-world problems with their knowledge and available tools. A true marvel in its execution, SCINNOVA represents the immense potential of this generation."
 
 * Dr. Athar Osama
