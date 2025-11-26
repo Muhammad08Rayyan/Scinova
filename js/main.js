@@ -1,29 +1,3 @@
-console.log("Grimoire Opened. Initializing ScinNova 9...");
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
-// --- CUSTOM CURSOR ---
-const cursorDot = document.querySelector(".cursor-dot");
-const cursorOutline = document.querySelector(".cursor-outline");
-
-window.addEventListener("mousemove", (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
-
-    // Dot follows instantly
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
-
-    // Outline follows with lag
-    gsap.to(cursorOutline, {
-        left: `${posX}px`,
-        top: `${posY}px`,
-        duration: 0.5,
-        overwrite: "auto"
-    });
-});
-
 // Add hover effect to interactive elements
 const hoverables = document.querySelectorAll('a, button, .magnetic-btn, .faq-question, .module-card');
 hoverables.forEach(el => {
@@ -127,8 +101,10 @@ function initHero() {
 // --- SCROLL ANIMATIONS ---
 function initScroll() {
     // Parallax Image
-    gsap.to(".parallax-img", {
-        yPercent: 20,
+    gsap.fromTo(".parallax-img", {
+        yPercent: -10
+    }, {
+        yPercent: 10,
         ease: "none",
         scrollTrigger: {
             trigger: ".editorial-image",
@@ -166,19 +142,98 @@ function initScroll() {
 
     // Horizontal Scroll (Desktop Only)
     if (window.innerWidth > 768) {
-        const sections = gsap.utils.toArray(".hs-item");
-        gsap.to(sections, {
-            xPercent: -100 * (sections.length - 1),
+        const content = document.querySelector(".hs-content");
+        const wrapper = document.querySelector(".horizontal-scroll-wrapper");
+
+        gsap.to(content, {
+            x: () => {
+                const paddingLeft = parseFloat(window.getComputedStyle(wrapper).paddingLeft);
+                return -(content.scrollWidth - window.innerWidth + paddingLeft);
+            },
             ease: "none",
             scrollTrigger: {
                 trigger: ".horizontal-scroll-section",
                 pin: true,
                 scrub: 1,
-                end: "+=3000",
+                end: "+=4000",
+                invalidateOnRefresh: true,
                 anticipatePin: 1
             }
         });
     }
+
+    // Stacking Cards Animation
+    initStackingCards();
+}
+
+// --- STACKING CARDS ANIMATION ---
+function initStackingCards() {
+    const cards = gsap.utils.toArray('.testimonial-card-stack');
+
+    if (window.innerWidth <= 768) {
+        // Simple fade-in for mobile
+        cards.forEach(card => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%"
+                }
+            });
+        });
+        return;
+    }
+
+    // Desktop stacking effect
+    cards.forEach((card, index) => {
+        const cardContent = card.querySelector('.card-content');
+
+        // Calculate scale based on card index
+        const scaleStart = 1 - (index * 0.05);
+
+        // Initial state - cards start stacked
+        gsap.set(card, {
+            scale: scaleStart,
+            transformOrigin: 'center top'
+        });
+
+        // Pin each card and animate it
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top top+=100",
+            end: () => index === cards.length - 1 ? "bottom top+=100" : `+=${window.innerHeight * 0.8}`,
+            pin: true,
+            pinSpacing: false,
+            scrub: 0.5,
+            animation: gsap.timeline()
+                .to(card, {
+                    scale: scaleStart - 0.1,
+                    opacity: 0.5,
+                    rotation: -5,
+                    ease: "none"
+                })
+                .to(cardContent, {
+                    boxShadow: `
+                        0 20px 60px rgba(0, 0, 0, 0.5),
+                        0 0 100px rgba(212, 175, 55, 0.3)
+                    `,
+                    ease: "none"
+                }, 0),
+            onUpdate: (self) => {
+                // Smooth glow transition
+                const progress = self.progress;
+                const glowIntensity = Math.max(0, 1 - progress);
+
+                cardContent.style.boxShadow = `
+                    0 20px 60px rgba(0, 0, 0, 0.5),
+                    0 0 ${40 + (glowIntensity * 60)}px rgba(212, 175, 55, ${0.1 + (glowIntensity * 0.2)})
+                `;
+            }
+        });
+    });
 }
 
 // --- KINETIC TYPOGRAPHY (Optimized) ---

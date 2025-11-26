@@ -288,31 +288,6 @@ h4 {
     text-align: center;
 }
 
-/* --- CURSOR --- */
-.cursor-dot,
-.cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-.cursor-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--ancient-gold);
-}
-
-.cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-
 /* --- MAGNETIC BUTTONS --- */
 .magnetic-btn {
     display: inline-block;
@@ -368,7 +343,7 @@ h4 {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: var(--space-lg);
-    align-items: start;
+    align-items: center;
 }
 
 .editorial-text {
@@ -511,35 +486,132 @@ h4 {
     transform: translateY(0);
 }
 
-/* --- TESTIMONIALS --- */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
+/* --- TESTIMONIALS (Stacking Cards) --- */
+.testimonials-section {
+    padding: var(--space-xl) 0;
+    background: var(--void-black);
+    position: relative;
 }
 
-.testimonial-card {
-    padding: var(--space-md);
-    border-left: 1px solid var(--muted-gold);
-    background: linear-gradient(to right, rgba(212, 175, 55, 0.05), transparent);
+.testimonials-title {
+    margin-bottom: var(--space-lg);
 }
 
-.testimonial-card.highlight {
-    border: 1px solid var(--ancient-gold);
-    background: rgba(212, 175, 55, 0.1);
+.stacking-cards-container {
+    position: relative;
+    width: 100%;
+    padding: 0 var(--space-md);
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.testimonial-card-stack {
+    position: sticky;
+    top: 100px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    height: 70vh;
+    min-height: 500px;
+    will-change: transform;
+}
+
+.card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, rgba(5, 5, 5, 0.9) 100%);
+    border: 2px solid var(--ancient-gold);
+    border-radius: 0;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(212, 175, 55, 0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.card-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--ancient-gold),
+        transparent);
+    opacity: 0.5;
+}
+
+.card-content::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.card-number {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: 8rem;
+    color: var(--ancient-gold);
+    opacity: 0.1;
+    line-height: 1;
+    z-index: 0;
 }
 
 .quote {
-    font-size: 1.2rem;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
     font-style: italic;
-    margin-bottom: 1.5rem;
+    color: var(--parchment);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    margin-bottom: auto;
+    padding-top: 2rem;
+}
+
+.quote::before {
+    content: '\201C';
+    font-size: 6rem;
+    color: var(--ancient-gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -2rem;
+    left: -1rem;
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+
+.author-section {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .author {
-    font-family: var(--font-tech);
+    font-family: var(--font-heading);
     letter-spacing: 0.1em;
     color: var(--ancient-gold);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.author-title {
+    font-family: var(--font-tech);
+    font-size: 0.9rem;
+    color: var(--parchment-dim);
+    letter-spacing: 0.05em;
 }
 
 /* --- GALLERY --- */
@@ -724,6 +796,38 @@ h4 {
         font-size: 4rem;
         text-align: center;
         margin-bottom: 2rem;
+    }
+
+    /* Stacking Cards Mobile */
+    .testimonial-card-stack {
+        height: auto;
+        min-height: auto;
+        position: relative;
+        top: 0;
+        margin-bottom: var(--space-md);
+    }
+
+    .card-content {
+        padding: var(--space-md);
+        height: auto;
+        min-height: 400px;
+    }
+
+    .card-number {
+        font-size: 4rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .quote {
+        font-size: 1.1rem;
+        padding-top: 1rem;
+    }
+
+    .quote::before {
+        font-size: 4rem;
+        top: -1rem;
+        left: -0.5rem;
     }
 
     .gallery-grid {
