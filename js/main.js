@@ -43,6 +43,7 @@ window.addEventListener("load", () => {
     initCountdown();
     initMagneticButtons();
     initKineticType();
+    initGallery();
 });
 
 // --- SIMPLIFIED LOADER ---
@@ -373,4 +374,50 @@ function triggerFireworks() {
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
     }, 250);
+}
+
+// --- GALLERY PARALLAX ---
+function initGallery() {
+    // Only on desktop
+    if (window.innerWidth < 768) return;
+
+    const columns = document.querySelectorAll(".gallery-col");
+
+    // Column 1 (Left) - Moves Up Slow
+    gsap.to(columns[0], {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".gallery-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+        }
+    });
+
+    // Column 2 (Center) - Moves Down (Reverse Parallax)
+    gsap.fromTo(columns[1], {
+        yPercent: -20
+    }, {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".gallery-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+        }
+    });
+
+    // Column 3 (Right) - Moves Up Slow
+    gsap.to(columns[2], {
+        yPercent: -15,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".gallery-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5
+        }
+    });
 }

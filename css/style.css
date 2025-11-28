@@ -1,9 +1,9 @@
-/* 
+/*
    SCINNOVA 9 - THE DIGITAL ALCHEMY
    Aesthetic: High-End Medieval Fantasy / Editorial / "Dribbble"
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Outfit:wght@300;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Outfit:wght@300;500&display=swap");
 
 :root {
     /* --- PALETTE --- */
@@ -16,9 +16,9 @@
     --blood-crimson: #5a0000;
 
     /* --- TYPOGRAPHY --- */
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Cormorant Garamond', serif;
-    --font-tech: 'Outfit', sans-serif;
+    --font-heading: "Cinzel", serif;
+    --font-body: "Cormorant Garamond", serif;
+    --font-tech: "Outfit", sans-serif;
     /* For small labels */
 
     /* --- SPACING --- */
@@ -145,7 +145,9 @@ body {
     font-family: var(--font-heading);
     color: var(--ancient-gold);
     margin-bottom: 2rem;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.2);
+    text-shadow:
+        0 0 20px rgba(212, 175, 55, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.2);
 }
 
 .timer-unit {
@@ -311,7 +313,11 @@ h4 {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, var(--void-black) 80%);
+    background: radial-gradient(
+        circle at 50% 50%,
+        #1a1a1a 0%,
+        var(--void-black) 80%
+    );
     z-index: -1;
 }
 
@@ -487,8 +493,10 @@ h4 {
 }
 
 .icon-illuminatio {
-    width: clamp(95px, 13vw, 115px);
-    height: clamp(95px, 13vw, 115px);
+    width: clamp(130px, 16vw, 160px);
+    height: clamp(130px, 16vw, 160px);
+    object-fit: cover;
+    object-position: center;
 }
 
 .icon-ptolemy {
@@ -514,6 +522,11 @@ h4 {
 .icon-automaton {
     width: clamp(90px, 12vw, 110px);
     height: clamp(90px, 12vw, 110px);
+    filter: invert(1) brightness(1.1) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+}
+
+.module-card:hover .icon-automaton {
+    filter: invert(1) brightness(1.1) drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
 }
 
 .icon-freud {
@@ -591,14 +604,19 @@ h4 {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, rgba(5, 5, 5, 0.9) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(212, 175, 55, 0.03) 0%,
+        rgba(5, 5, 5, 0.9) 100%
+    );
     border: 2px solid var(--ancient-gold);
     border-radius: 0;
     padding: clamp(2.5rem, 5vw, 4rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
         0 0 40px rgba(212, 175, 55, 0.1);
     backdrop-filter: blur(10px);
     overflow-y: auto;
@@ -618,22 +636,24 @@ h4 {
 }
 
 .card-content::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg,
-            transparent,
-            var(--ancient-gold),
-            transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--ancient-gold),
+        transparent
+    );
     opacity: 0.5;
     z-index: 0;
 }
 
 .card-content::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -655,10 +675,10 @@ h4 {
 }
 
 .quote {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     font-style: italic;
     color: var(--parchment);
-    line-height: 1.8;
+    line-height: 1.6;
     position: relative;
     z-index: 1;
     margin-bottom: auto;
@@ -667,7 +687,7 @@ h4 {
 }
 
 .quote::before {
-    content: '\201C';
+    content: "\201C";
     font-size: clamp(4rem, 8vw, 6rem);
     color: var(--ancient-gold);
     opacity: 0.3;
@@ -703,33 +723,65 @@ h4 {
     letter-spacing: 0.05em;
 }
 
-/* --- GALLERY --- */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: 400px 300px;
-    gap: var(--space-sm);
+/* --- GALLERY (Parallax Masonry) --- */
+.gallery-section {
+    overflow: hidden; /* Contain the parallax movement */
+    background: var(--void-black);
+}
+
+.gallery-wrapper {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    align-items: flex-start;
+    height: 150vh; /* Taller than viewport for parallax room */
     margin-top: var(--space-lg);
 }
 
+.gallery-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 30%;
+}
+
 .gallery-item {
+    width: 100%;
+    border-radius: 4px;
     overflow: hidden;
     position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.5s ease;
+}
+
+.gallery-item:hover {
+    border-color: var(--ancient-gold);
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
 }
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
+    height: auto;
+    display: block;
+    filter: grayscale(100%) contrast(1.2);
+    transition: all 0.5s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.05);
+    filter: grayscale(0%) contrast(1);
 }
 
-.large {
-    grid-row: 1 / -1;
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .gallery-wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+    .gallery-col {
+        width: 100%;
+    }
 }
 
 /* --- FAQ --- */
@@ -888,24 +940,41 @@ h4 {
         height: 80px !important;
     }
 
-    .icon-arcanum,
-    .icon-illuminatio {
+    .icon-arcanum {
         width: 85px !important;
         height: 85px !important;
     }
 
-    .icon-ptolemy,
-    .icon-freud {
+    .icon-illuminatio {
+        width: 110px !important;
+        height: 110px !important;
+    }
+
+    .icon-ptolemy {
         width: 70px !important;
         height: 70px !important;
     }
 
     .icon-planck,
-    .icon-redshift,
-    .icon-asclepius,
+    .icon-asclepius {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .icon-redshift {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
     .icon-automaton {
         width: 80px !important;
         height: 80px !important;
+        filter: invert(1) brightness(1.1) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)) !important;
+    }
+
+    .icon-freud {
+        width: 70px !important;
+        height: 70px !important;
     }
 
     .module-title {
