@@ -406,14 +406,15 @@ h4 {
 
 .hs-content {
     display: flex;
-    gap: var(--space-md);
-    height: 70vh;
+    gap: var(--space-lg);
+    height: 75vh;
     align-items: center;
+    padding-right: var(--space-md);
 }
 
 .module-card {
-    width: 30vw;
-    min-width: 350px;
+    width: 45vw;
+    min-width: 500px;
     height: 100%;
     border: 1px solid rgba(212, 175, 55, 0.2);
     background: rgba(5, 5, 5, 0.5);
@@ -429,90 +430,160 @@ h4 {
 }
 
 .card-inner {
-    padding: var(--space-md);
+    padding: clamp(1.5rem, 3vw, 3rem);
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    overflow-y: auto;
+}
+
+.card-inner::-webkit-scrollbar {
+    width: 4px;
+}
+
+.card-inner::-webkit-scrollbar-track {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.card-inner::-webkit-scrollbar-thumb {
+    background: var(--muted-gold);
+    border-radius: 2px;
 }
 
 .module-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    padding-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    flex-shrink: 0;
 }
 
 .module-number {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: var(--muted-gold);
     opacity: 0.5;
 }
 
 .module-icon {
-    width: 80px;
-    height: 80px;
+    width: clamp(70px, 10vw, 100px);
+    height: clamp(70px, 10vw, 100px);
     filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
     transition: transform 0.5s ease;
+    object-fit: contain;
 }
 
 .module-card:hover .module-icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.08) rotate(3deg);
     filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
 }
 
+/* Individual icon adjustments for visual consistency */
+.icon-arcanum {
+    width: clamp(90px, 12vw, 110px);
+    height: clamp(90px, 12vw, 110px);
+}
+
+.icon-illuminatio {
+    width: clamp(95px, 13vw, 115px);
+    height: clamp(95px, 13vw, 115px);
+}
+
+.icon-ptolemy {
+    width: clamp(75px, 10vw, 95px);
+    height: clamp(75px, 10vw, 95px);
+}
+
+.icon-planck {
+    width: clamp(85px, 11vw, 105px);
+    height: clamp(85px, 11vw, 105px);
+}
+
+.icon-asclepius {
+    width: clamp(80px, 10vw, 100px);
+    height: clamp(80px, 10vw, 100px);
+}
+
+.icon-redshift {
+    width: clamp(85px, 11vw, 105px);
+    height: clamp(85px, 11vw, 105px);
+}
+
+.icon-automaton {
+    width: clamp(90px, 12vw, 110px);
+    height: clamp(90px, 12vw, 110px);
+}
+
+.icon-freud {
+    width: clamp(75px, 10vw, 95px);
+    height: clamp(75px, 10vw, 95px);
+}
+
 .module-body {
-    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    flex: 1;
+    min-height: 0;
 }
 
 .module-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
     color: var(--parchment);
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+    flex-shrink: 0;
 }
 
 .module-desc {
     font-family: var(--font-body);
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
     color: var(--parchment-dim);
-    line-height: 1.4;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease;
+    line-height: 1.7;
+    opacity: 1;
+    flex: 1;
 }
 
-.module-card:hover .module-desc {
-    opacity: 1;
-    transform: translateY(0);
+/* Invisible spacer card to ensure proper scrolling */
+.spacer-card {
+    width: 45vw;
+    min-width: 500px;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* --- TESTIMONIALS (Stacking Cards) --- */
 .testimonials-section {
-    padding: var(--space-xl) 0;
+    padding: clamp(6rem, 12vw, 10rem) 0;
     background: var(--void-black);
     position: relative;
 }
 
 .testimonials-title {
-    margin-bottom: var(--space-lg);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    padding: 0 var(--space-md);
 }
 
 .stacking-cards-container {
     position: relative;
     width: 100%;
-    padding: 0 var(--space-md);
+    padding: 0 clamp(1rem, 4vw, 3rem);
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1400px;
 }
 
 .testimonial-card-stack {
     position: sticky;
-    top: 100px;
+    top: clamp(80px, 10vh, 120px);
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto 2rem;
-    height: 70vh;
-    min-height: 500px;
+    max-width: 1000px;
+    margin: 0 auto clamp(2rem, 4vw, 4rem);
+    height: 65vh;
+    min-height: 450px;
+    max-height: 600px;
     will-change: transform;
 }
 
@@ -523,14 +594,27 @@ h4 {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, rgba(5, 5, 5, 0.9) 100%);
     border: 2px solid var(--ancient-gold);
     border-radius: 0;
-    padding: var(--space-lg);
+    padding: clamp(2.5rem, 5vw, 4rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(212, 175, 55, 0.1);
+        0 0 40px rgba(212, 175, 55, 0.1);
     backdrop-filter: blur(10px);
-    overflow: hidden;
+    overflow-y: auto;
+}
+
+.card-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-content::-webkit-scrollbar-track {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.card-content::-webkit-scrollbar-thumb {
+    background: var(--muted-gold);
+    border-radius: 3px;
 }
 
 .card-content::before {
@@ -541,10 +625,11 @@ h4 {
     right: 0;
     height: 3px;
     background: linear-gradient(90deg,
-        transparent,
-        var(--ancient-gold),
-        transparent);
+            transparent,
+            var(--ancient-gold),
+            transparent);
     opacity: 0.5;
+    z-index: 0;
 }
 
 .card-content::after {
@@ -554,14 +639,15 @@ h4 {
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
     opacity: 0.3;
+    z-index: 0;
 }
 
 .card-number {
     position: absolute;
-    top: var(--space-md);
-    right: var(--space-md);
+    top: clamp(1.5rem, 3vw, 2.5rem);
+    right: clamp(1.5rem, 3vw, 2.5rem);
     font-family: var(--font-heading);
-    font-size: 8rem;
+    font-size: clamp(5rem, 10vw, 8rem);
     color: var(--ancient-gold);
     opacity: 0.1;
     line-height: 1;
@@ -569,24 +655,25 @@ h4 {
 }
 
 .quote {
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-style: italic;
     color: var(--parchment);
     line-height: 1.8;
     position: relative;
     z-index: 1;
     margin-bottom: auto;
-    padding-top: 2rem;
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-right: clamp(1rem, 3vw, 2rem);
 }
 
 .quote::before {
     content: '\201C';
-    font-size: 6rem;
+    font-size: clamp(4rem, 8vw, 6rem);
     color: var(--ancient-gold);
     opacity: 0.3;
     position: absolute;
-    top: -2rem;
-    left: -1rem;
+    top: clamp(-1rem, 0vw, 0rem);
+    left: clamp(-0.5rem, -1vw, -1rem);
     font-family: var(--font-heading);
     line-height: 1;
 }
@@ -595,21 +682,23 @@ h4 {
     position: relative;
     z-index: 1;
     border-top: 1px solid rgba(212, 175, 55, 0.3);
-    padding-top: 1.5rem;
-    margin-top: 2rem;
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    flex-shrink: 0;
 }
 
 .author {
     font-family: var(--font-heading);
     letter-spacing: 0.1em;
     color: var(--ancient-gold);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
 }
 
 .author-title {
     font-family: var(--font-tech);
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
     color: var(--parchment-dim);
     letter-spacing: 0.05em;
 }
@@ -789,7 +878,42 @@ h4 {
 
     .module-card {
         width: 100%;
-        height: 400px;
+        min-width: 100%;
+        height: auto;
+        min-height: 500px;
+    }
+
+    .module-icon {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .icon-arcanum,
+    .icon-illuminatio {
+        width: 85px !important;
+        height: 85px !important;
+    }
+
+    .icon-ptolemy,
+    .icon-freud {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    .icon-planck,
+    .icon-redshift,
+    .icon-asclepius,
+    .icon-automaton {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .module-title {
+        font-size: 2rem;
+    }
+
+    .module-desc {
+        font-size: 1rem;
     }
 
     .hs-title {
@@ -798,36 +922,69 @@ h4 {
         margin-bottom: 2rem;
     }
 
+    .spacer-card {
+        display: none;
+    }
+
     /* Stacking Cards Mobile */
+    .testimonials-section {
+        padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+
+    .testimonials-title {
+        margin-bottom: 2.5rem;
+    }
+
+    .stacking-cards-container {
+        padding: 0 1rem;
+    }
+
     .testimonial-card-stack {
         height: auto;
         min-height: auto;
+        max-height: none;
         position: relative;
         top: 0;
-        margin-bottom: var(--space-md);
+        margin-bottom: 2rem;
     }
 
     .card-content {
-        padding: var(--space-md);
+        padding: 2rem 1.5rem;
         height: auto;
-        min-height: 400px;
+        min-height: 350px;
+        overflow-y: visible;
     }
 
     .card-number {
-        font-size: 4rem;
+        font-size: 3.5rem;
         top: 1rem;
         right: 1rem;
     }
 
     .quote {
-        font-size: 1.1rem;
-        padding-top: 1rem;
+        font-size: 1rem;
+        padding-top: 1.5rem;
+        padding-right: 0;
+        line-height: 1.7;
     }
 
     .quote::before {
-        font-size: 4rem;
-        top: -1rem;
+        font-size: 3rem;
+        top: -0.5rem;
         left: -0.5rem;
+    }
+
+    .author-section {
+        padding-top: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .author {
+        font-size: 1rem;
+    }
+
+    .author-title {
+        font-size: 0.8rem;
     }
 
     .gallery-grid {
