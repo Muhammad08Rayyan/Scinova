@@ -3,23 +3,31 @@
    Aesthetic: High-End Medieval Fantasy / Editorial / "Dribbble"
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Outfit:wght@300;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap');
 
 :root {
-    /* --- PALETTE --- */
-    --void-black: #030303;
-    --shadow-dark: #0a0a0a;
-    --ancient-gold: #d4af37;
-    --muted-gold: #8a7326;
-    --parchment: #e3dac9;
-    --parchment-dim: #a8a090;
-    --blood-crimson: #5a0000;
+    /* --- PALETTE (Steampunk/Magical) --- */
+    --void-black: #0b0907;
+    /* Soot */
+    --shadow-dark: #1a1612;
+    /* Dark Leather */
+    --ancient-gold: #e0c070;
+    /* Brass */
+    --muted-gold: #b87333;
+    /* Copper */
+    --parchment: #f0e6d2;
+    /* Sepia Parchment */
+    --parchment-dim: #a89f91;
+    /* Ash */
+    --blood-crimson: #7a2e2e;
+    /* Rust */
 
     /* --- TYPOGRAPHY --- */
-    --font-heading: "Cinzel", serif;
-    --font-body: "Cormorant Garamond", serif;
-    --font-tech: "Outfit", sans-serif;
-    /* For small labels */
+    --font-heading: 'Metamorphous', cursive;
+    /* Arcane/Magical */
+    --font-body: 'Cormorant Garamond', serif;
+    --font-tech: 'Cinzel Decorative', serif;
+    /* Magic/Harry Potter */
 
     /* --- SPACING --- */
     --space-xs: clamp(0.5rem, 1vw, 1rem);
@@ -228,14 +236,17 @@ body {
     font-size: 0.9rem;
     color: var(--ancient-gold);
     text-decoration: none;
-    border: 1px solid var(--ancient-gold);
+    border: 3px double var(--ancient-gold);
+    /* Double border for industrial feel */
     padding: 0.5rem 1.5rem;
     transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .nav-register-btn:hover {
     background: var(--ancient-gold);
     color: var(--void-black);
+    box-shadow: 0 0 15px var(--ancient-gold);
 }
 
 /* --- TYPOGRAPHY UTILS --- */
@@ -244,9 +255,12 @@ h2,
 h3,
 h4 {
     font-family: var(--font-heading);
-    font-weight: 400;
+    font-weight: 700;
+    /* Bold for impact */
     text-transform: uppercase;
-    line-height: 0.9;
+    /* Cinzel looks best in caps */
+    line-height: 1.0;
+    letter-spacing: 0.02em;
 }
 
 .section-title {
@@ -313,11 +327,7 @@ h4 {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at 50% 50%,
-        #1a1a1a 0%,
-        var(--void-black) 80%
-    );
+    background: radial-gradient(circle at 50% 50%, #2a221b 0%, var(--void-black) 80%);
     z-index: -1;
 }
 
@@ -347,7 +357,7 @@ h4 {
 /* --- ABOUT (Editorial) --- */
 .editorial-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-lg);
     align-items: center;
 }
@@ -366,7 +376,10 @@ h4 {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border: 1px solid var(--ancient-gold);
+    border: 2px solid var(--ancient-gold);
+    outline: 1px solid var(--muted-gold);
+    /* Double frame effect */
+    outline-offset: -10px;
     clip-path: inset(100% 0 0 0);
     /* Start hidden (bottom up) */
     transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -422,17 +435,19 @@ h4 {
     width: 45vw;
     min-width: 500px;
     height: 100%;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    background: rgba(5, 5, 5, 0.5);
+    border: 1px solid var(--muted-gold);
+    background: rgba(11, 9, 7, 0.8);
+    /* Soot background */
     backdrop-filter: blur(10px);
     transition: all 0.5s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
 .module-card:hover {
     border-color: var(--ancient-gold);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 30px rgba(224, 192, 112, 0.1), inset 0 0 10px var(--ancient-gold);
 }
 
 .card-inner {
@@ -604,11 +619,9 @@ h4 {
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(212, 175, 55, 0.03) 0%,
-        rgba(5, 5, 5, 0.9) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(212, 175, 55, 0.03) 0%,
+            rgba(5, 5, 5, 0.9) 100%);
     border: 2px solid var(--ancient-gold);
     border-radius: 0;
     padding: clamp(2.5rem, 5vw, 4rem);
@@ -642,12 +655,10 @@ h4 {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--ancient-gold),
-        transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            var(--ancient-gold),
+            transparent);
     opacity: 0.5;
     z-index: 0;
 }
@@ -725,7 +736,8 @@ h4 {
 
 /* --- GALLERY (Parallax Masonry) --- */
 .gallery-section {
-    overflow: hidden; /* Contain the parallax movement */
+    overflow: hidden;
+    /* Contain the parallax movement */
     background: var(--void-black);
 }
 
@@ -734,7 +746,8 @@ h4 {
     gap: var(--space-md);
     justify-content: center;
     align-items: flex-start;
-    height: 150vh; /* Taller than viewport for parallax room */
+    height: 150vh;
+    /* Taller than viewport for parallax room */
     margin-top: var(--space-lg);
 }
 
@@ -747,10 +760,12 @@ h4 {
 
 .gallery-item {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 2px;
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    border: 4px solid var(--shadow-dark);
+    /* Frame look */
+    outline: 1px solid var(--muted-gold);
     transition: all 0.5s ease;
 }
 
@@ -758,19 +773,20 @@ h4 {
     border-color: var(--ancient-gold);
     transform: scale(1.02);
     z-index: 10;
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
-    filter: grayscale(100%) contrast(1.2);
+    filter: sepia(80%) contrast(1.1);
+    /* Old photo look */
     transition: all 0.5s ease;
 }
 
 .gallery-item:hover img {
-    filter: grayscale(0%) contrast(1);
+    filter: sepia(0%) contrast(1);
 }
 
 /* Mobile Responsive */
@@ -779,6 +795,7 @@ h4 {
         flex-direction: column;
         height: auto;
     }
+
     .gallery-col {
         width: 100%;
     }
