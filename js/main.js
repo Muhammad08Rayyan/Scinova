@@ -155,8 +155,8 @@ function initScroll() {
             scrollTrigger: {
                 trigger: ".horizontal-scroll-section",
                 pin: true,
-                scrub: 1,
-                end: "+=4000",
+                scrub: 2, /* Smoother, heavier feel */
+                end: "+=5000", /* Slower scroll */
                 invalidateOnRefresh: true,
                 anticipatePin: 1
             }

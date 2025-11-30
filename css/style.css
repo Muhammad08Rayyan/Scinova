@@ -150,6 +150,8 @@ body {
 .fire-timer {
     display: flex;
     gap: 1.5rem;
+    align-items: flex-start;
+    /* Align to top so colons match numbers */
     font-family: var(--font-heading);
     color: var(--ancient-gold);
     margin-bottom: 2rem;
@@ -166,7 +168,8 @@ body {
 
 .timer-unit span {
     font-size: clamp(3rem, 8vw, 8rem);
-    line-height: 0.8;
+    line-height: 1.0;
+    /* Increased to prevent overlap */
     font-weight: 700;
 }
 
@@ -175,7 +178,8 @@ body {
     font-size: 0.8rem;
     letter-spacing: 0.2em;
     color: var(--parchment-dim);
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
+    /* Increased spacing */
 }
 
 .timer-separator {
