@@ -944,6 +944,26 @@ h4 {
         font-size: 3rem;
     }
 
+    /* Loader Mobile */
+    .loader-text {
+        font-size: 1.5rem;
+        letter-spacing: 0.2em;
+    }
+
+    .loader-subtext {
+        font-size: 0.8rem;
+    }
+
+    /* Nav Mobile (Center Logo) */
+    .magick-nav {
+        justify-content: center;
+    }
+
+    .nav-logo {
+        height: 35px;
+        /* Slightly smaller */
+    }
+
     /* Hide Nav Button on Mobile */
     .nav-register-btn {
         display: none;
