@@ -882,6 +882,27 @@ h4 {
     text-align: center;
 }
 
+.organizer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.organizer-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 3px solid var(--ancient-gold);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.organizer-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+}
+
 .org-name {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
