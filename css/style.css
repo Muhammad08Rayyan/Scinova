@@ -946,8 +946,10 @@ h4 {
 
     /* Loader Mobile */
     .loader-text {
-        font-size: 1.5rem;
-        letter-spacing: 0.2em;
+        font-size: clamp(1.2rem, 5vw, 1.5rem) !important;
+        letter-spacing: 0.1em !important;
+        width: 100%;
+        text-align: center;
     }
 
     .loader-subtext {
@@ -956,12 +958,18 @@ h4 {
 
     /* Nav Mobile (Center Logo) */
     .magick-nav {
-        justify-content: center;
+        justify-content: center !important;
+    }
+
+    .logo {
+        margin: 0 !important;
     }
 
     .nav-logo {
         height: 35px;
         /* Slightly smaller */
+        display: block;
+        margin: 0 auto;
     }
 
     /* Hide Nav Button on Mobile */
