@@ -63,7 +63,7 @@ window.addEventListener("load", () => {
     initFAQ();
     initCountdown();
     initMagneticButtons();
-    initKineticType();
+    initMagneticButtons();
     initGallery();
 });
 
@@ -132,7 +132,7 @@ function initScroll() {
             trigger: ".editorial-image",
             start: "top bottom",
             end: "bottom top",
-            scrub: true
+            scrub: 0.5 // Smoother scrub
         }
     });
 
@@ -176,7 +176,7 @@ function initScroll() {
             scrollTrigger: {
                 trigger: ".horizontal-scroll-section",
                 pin: true,
-                scrub: 2, /* Smoother, heavier feel */
+                scrub: 1.5, /* Smoother, heavier feel */
                 end: "+=5000", /* Slower scroll */
                 invalidateOnRefresh: true,
                 anticipatePin: 1
@@ -186,102 +186,6 @@ function initScroll() {
 
     // Stacking Cards Animation
     initStackingCards();
-}
-
-// --- STACKING CARDS ANIMATION ---
-function initStackingCards() {
-    const cards = gsap.utils.toArray('.testimonial-card-stack');
-
-    if (window.innerWidth <= 768) {
-        // Simple fade-in for mobile
-        cards.forEach(card => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%"
-                }
-            });
-        });
-        return;
-    }
-
-    // Desktop stacking effect
-    cards.forEach((card, index) => {
-        const cardContent = card.querySelector('.card-content');
-
-        // Calculate scale based on card index
-        const scaleStart = 1 - (index * 0.05);
-
-        // Initial state - cards start stacked
-        gsap.set(card, {
-            scale: scaleStart,
-            transformOrigin: 'center top'
-        });
-
-        // Pin each card and animate it
-        ScrollTrigger.create({
-            trigger: card,
-            start: "top top+=100",
-            end: () => index === cards.length - 1 ? "bottom top+=100" : `+=${window.innerHeight * 0.8}`,
-            pin: true,
-            pinSpacing: false,
-            scrub: 0.5,
-            animation: gsap.timeline()
-                .to(card, {
-                    scale: scaleStart - 0.1,
-                    opacity: 0.5,
-                    rotation: -5,
-                    ease: "none"
-                })
-                .to(cardContent, {
-                    boxShadow: `
-                        0 20px 60px rgba(0, 0, 0, 0.5),
-                        0 0 100px rgba(212, 175, 55, 0.3)
-                    `,
-                    ease: "none"
-                }, 0),
-            onUpdate: (self) => {
-                // Smooth glow transition
-                const progress = self.progress;
-                const glowIntensity = Math.max(0, 1 - progress);
-
-                cardContent.style.boxShadow = `
-                    0 20px 60px rgba(0, 0, 0, 0.5),
-                    0 0 ${40 + (glowIntensity * 60)}px rgba(212, 175, 55, ${0.1 + (glowIntensity * 0.2)})
-                `;
-            }
-        });
-    });
-}
-
-// --- KINETIC TYPOGRAPHY (Optimized) ---
-function initKineticType() {
-    // Only enable on desktop for performance
-    if (window.innerWidth < 768) return;
-
-    let proxy = { skew: 0 },
-        skewSetter = gsap.quickSetter(".section-title, .hs-title", "skewY", "deg"),
-        clamp = gsap.utils.clamp(-10, 10); // Reduced skew for less jitter
-
-    ScrollTrigger.create({
-        onUpdate: (self) => {
-            let skew = clamp(self.getVelocity() / -500); // Reduced sensitivity
-            if (Math.abs(skew) > Math.abs(proxy.skew)) {
-                proxy.skew = skew;
-                gsap.to(proxy, {
-                    skew: 0,
-                    duration: 0.5,
-                    ease: "power3",
-                    overwrite: true,
-                    onUpdate: () => skewSetter(proxy.skew)
-                });
-            }
-        }
-    });
 }
 
 // --- MAGNETIC BUTTONS ---
