@@ -1,3 +1,24 @@
+// --- CUSTOM CURSOR ---
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+window.addEventListener("mousemove", function (e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    if (cursorDot && cursorOutline) {
+        // Dot follows cursor exactly
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        // Outline follows with lag
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+    }
+});
+
 // Add hover effect to interactive elements
 const hoverables = document.querySelectorAll('a, button, .magnetic-btn, .faq-question, .module-card');
 hoverables.forEach(el => {

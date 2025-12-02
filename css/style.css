@@ -317,6 +317,30 @@ h4 {
     will-change: transform;
 }
 
+/* --- MOBILE UTILS --- */
+.mobile-only {
+    display: none;
+}
+
+.hero-register-btn {
+    font-family: var(--font-tech);
+    letter-spacing: 0.2em;
+    font-size: 1.2rem;
+    color: var(--void-black);
+    background: var(--ancient-gold);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 1px solid var(--ancient-gold);
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(224, 192, 112, 0.3);
+}
+
+.hero-register-btn:active {
+    transform: scale(0.95);
+}
+
 /* --- HERO --- */
 .hero-gate {
     height: 100vh;
@@ -793,17 +817,7 @@ h4 {
     filter: sepia(0%) contrast(1);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .gallery-wrapper {
-        flex-direction: column;
-        height: auto;
-    }
 
-    .gallery-col {
-        width: 100%;
-    }
-}
 
 /* --- FAQ --- */
 .faq-wrapper {
@@ -921,108 +935,141 @@ h4 {
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 0 var(--space-xs);
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+
+    /* Hide Nav Button on Mobile */
+    .nav-register-btn {
+        display: none;
+    }
+
+    /* Show Hero Button on Mobile */
+    .mobile-only {
+        display: block;
+    }
+
+    /* Hero Mobile */
+    .hero-gate {
+        height: 100dvh;
+        /* Use dynamic viewport height */
+    }
+
+    .fire-timer {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .timer-unit span {
+        font-size: 15vw;
+        /* Massive on mobile */
+    }
+
+    .timer-separator {
+        font-size: 15vw;
+    }
+
+    .timer-unit label {
+        font-size: 0.6rem;
+        margin-top: 0.5rem;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        bottom: 2rem;
+    }
+
+    /* Editorial Mobile */
     .editorial-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .editorial-image {
         height: 50vh;
         order: -1;
+        /* Image on top */
     }
 
     .floating-caption {
         display: none;
     }
 
+    /* Modules Mobile (Vertical Stack) */
     .horizontal-scroll-section {
         height: auto;
         overflow: visible;
+        background: var(--void-black);
+        /* Match bg */
     }
 
     .horizontal-scroll-wrapper {
         padding: 0;
+        display: block;
+        height: auto;
     }
 
     .hs-content {
         flex-direction: column;
         height: auto;
-        padding: var(--space-md);
-    }
-
-    .module-card {
+        padding: var(--space-md) 0;
+        gap: 3rem;
         width: 100%;
-        min-width: 100%;
-        height: auto;
-        min-height: 500px;
     }
 
-    .module-icon {
-        width: 80px !important;
-        height: 80px !important;
-    }
-
-    .icon-arcanum {
-        width: 85px !important;
-        height: 85px !important;
-    }
-
-    .icon-illuminatio {
-        width: 110px !important;
-        height: 110px !important;
-    }
-
-    .icon-ptolemy {
-        width: 70px !important;
-        height: 70px !important;
-    }
-
-    .icon-planck,
-    .icon-asclepius {
-        width: 80px !important;
-        height: 80px !important;
-    }
-
-    .icon-redshift {
-        width: 80px !important;
-        height: 80px !important;
-    }
-
-    .icon-automaton {
-        width: 80px !important;
-        height: 80px !important;
-        filter: invert(1) brightness(1.1) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)) !important;
-    }
-
-    .icon-freud {
-        width: 70px !important;
-        height: 70px !important;
-    }
-
-    .module-title {
-        font-size: 2rem;
-    }
-
-    .module-desc {
-        font-size: 1rem;
+    .hs-item.title-item {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
     }
 
     .hs-title {
         font-size: 4rem;
-        text-align: center;
-        margin-bottom: 2rem;
+        line-height: 1;
+    }
+
+    .module-card {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: auto;
+        aspect-ratio: auto;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+    }
+
+    .card-inner {
+        padding: 2rem;
+        height: auto;
+        min-height: 300px;
+        overflow: visible;
+    }
+
+    .module-icon {
+        width: 60px !important;
+        height: 60px !important;
     }
 
     .spacer-card {
         display: none;
     }
 
-    /* Stacking Cards Mobile */
+    /* Testimonials Mobile */
     .testimonials-section {
-        padding: clamp(4rem, 8vw, 6rem) 0;
+        padding: 4rem 0;
     }
 
     .testimonials-title {
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
 
     .stacking-cards-container {
@@ -1036,17 +1083,19 @@ h4 {
         position: relative;
         top: 0;
         margin-bottom: 2rem;
+        transform: none !important;
+        /* Disable GSAP transform override if needed */
     }
 
     .card-content {
         padding: 2rem 1.5rem;
         height: auto;
-        min-height: 350px;
-        overflow-y: visible;
+        min-height: auto;
+        overflow: visible;
     }
 
     .card-number {
-        font-size: 3.5rem;
+        font-size: 4rem;
         top: 1rem;
         right: 1rem;
     }
@@ -1055,7 +1104,7 @@ h4 {
         font-size: 1rem;
         padding-top: 1.5rem;
         padding-right: 0;
-        line-height: 1.7;
+        line-height: 1.5;
     }
 
     .quote::before {
@@ -1064,32 +1113,30 @@ h4 {
         left: -0.5rem;
     }
 
-    .author-section {
-        padding-top: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .author {
-        font-size: 1rem;
-    }
-
-    .author-title {
-        font-size: 0.8rem;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-
-    .large {
-        grid-row: auto;
-        height: 300px;
-    }
-
-    .hero-meta {
+    /* Gallery Mobile (Vertical Stack) */
+    .gallery-wrapper {
         flex-direction: column;
-        align-items: center;
+        height: auto;
+        margin-top: 0;
         gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .gallery-col {
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        border-width: 2px;
+    }
+
+    /* Footer Mobile */
+    .footer-partners {
+        gap: 1.5rem;
+    }
+
+    .partner-logo {
+        height: 40px;
     }
 }
