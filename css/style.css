@@ -221,6 +221,8 @@ body {
 .magick-nav {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     padding: var(--space-sm) var(--space-md);
     display: flex;
@@ -228,6 +230,7 @@ body {
     align-items: center;
     z-index: 100;
     mix-blend-mode: difference;
+    overflow: hidden;
 }
 
 .nav-logo {
@@ -243,14 +246,13 @@ body {
     border: 3px double var(--ancient-gold);
     /* Double border for industrial feel */
     padding: 0.5rem 1.5rem;
-    transition: all 0.3s ease;
     background: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
 }
 
 .nav-register-btn:hover {
     background: var(--ancient-gold);
     color: var(--void-black);
-    box-shadow: 0 0 15px var(--ancient-gold);
 }
 
 /* --- TYPOGRAPHY UTILS --- */
@@ -432,7 +434,8 @@ h4 {
     width: 100%;
     height: 120%;
     object-fit: cover;
-    will-change: transform; /* Optimize for smooth scrolling */
+    will-change: transform;
+    /* Optimize for smooth scrolling */
 }
 
 .floating-caption {

@@ -20,7 +20,7 @@ window.addEventListener("mousemove", function (e) {
 });
 
 // Add hover effect to interactive elements
-const hoverables = document.querySelectorAll('a, button, .magnetic-btn, .faq-question, .module-card');
+const hoverables = document.querySelectorAll('a:not(.magick-nav a), button, .magnetic-btn, .faq-question, .module-card');
 hoverables.forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursorOutline.style.width = '60px';
@@ -263,6 +263,11 @@ function initMagneticButtons() {
     const magnets = document.querySelectorAll('.magnetic-btn');
 
     magnets.forEach((magnet) => {
+        // Skip navbar elements
+        if (magnet.closest('.magick-nav')) {
+            return;
+        }
+
         magnet.addEventListener('mousemove', (e) => {
             const rect = magnet.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
