@@ -944,37 +944,20 @@ h4 {
         font-size: 3rem;
     }
 
-    /* Loader Mobile */
+    /* Hide Navbar Completely on Mobile */
+    .magick-nav {
+        display: none;
+    }
+
+    /* Mobile Loader */
     .loader-text {
-        font-size: clamp(1.2rem, 5vw, 1.5rem) !important;
-        letter-spacing: 0.1em !important;
-        width: 100%;
-        text-align: center;
+        font-size: 1.5rem;
+        letter-spacing: 0.2em;
     }
 
     .loader-subtext {
         font-size: 0.8rem;
-    }
-
-    /* Nav Mobile (Center Logo) */
-    .magick-nav {
-        justify-content: center !important;
-    }
-
-    .logo {
-        margin: 0 !important;
-    }
-
-    .nav-logo {
-        height: 35px;
-        /* Slightly smaller */
-        display: block;
-        margin: 0 auto;
-    }
-
-    /* Hide Nav Button on Mobile */
-    .nav-register-btn {
-        display: none;
+        letter-spacing: 0.1em;
     }
 
     /* Show Hero Button on Mobile */
