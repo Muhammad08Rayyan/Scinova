@@ -189,8 +189,8 @@ body {
 }
 
 .hero-title-small {
-    font-size: 1.5rem;
-    letter-spacing: 0.5em;
+    font-size: 1.2rem;
+    letter-spacing: 0.4em;
     color: var(--parchment-dim);
     font-family: var(--font-tech);
 }
