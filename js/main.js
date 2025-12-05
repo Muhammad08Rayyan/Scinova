@@ -7,11 +7,9 @@ window.addEventListener("mousemove", function (e) {
     const posY = e.clientY;
 
     if (cursorDot && cursorOutline) {
-        // Dot follows cursor exactly
         cursorDot.style.left = `${posX}px`;
         cursorDot.style.top = `${posY}px`;
 
-        // Outline follows with lag
         cursorOutline.animate({
             left: `${posX}px`,
             top: `${posY}px`
@@ -35,7 +33,8 @@ hoverables.forEach(el => {
 });
 
 // --- LENIS SMOOTH SCROLL ---
-const lenis = new Lenis({
+// Initialize globally for Nav Links
+window.lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: 'vertical',
@@ -46,11 +45,10 @@ const lenis = new Lenis({
     touchMultiplier: 2,
 });
 
-// Sync Lenis with GSAP ScrollTrigger
-lenis.on('scroll', ScrollTrigger.update);
+window.lenis.on('scroll', ScrollTrigger.update);
 
 gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
+    window.lenis.raf(time * 1000);
 });
 
 gsap.ticker.lagSmoothing(0);
@@ -63,8 +61,8 @@ window.addEventListener("load", () => {
     initFAQ();
     initCountdown();
     initMagneticButtons();
-    initMagneticButtons();
     initGallery();
+    initMobileMenu();
 });
 
 // --- SIMPLIFIED LOADER ---
@@ -122,19 +120,21 @@ function initHero() {
 
 // --- SCROLL ANIMATIONS ---
 function initScroll() {
-    // Parallax Image
-    gsap.fromTo(".parallax-img", {
-        yPercent: -10
-    }, {
-        yPercent: 10,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".editorial-image",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.5 // Smoother scrub
-        }
-    });
+    // Parallax Image - DISABLED ON MOBILE TO PREVENT JITTER
+    if (window.innerWidth > 768) {
+        gsap.fromTo(".parallax-img", {
+            yPercent: -10
+        }, {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".editorial-image",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.5 // Smoother scrub
+            }
+        });
+    }
 
     // Image Reveal (Mask)
     gsap.to(".image-frame", {
@@ -185,75 +185,39 @@ function initScroll() {
     }
 
     // Stacking Cards Animation
-    // initStackingCards();
+    initStackingCards();
 }
 
 // --- STACKING CARDS ANIMATION ---
 function initStackingCards() {
     const cards = gsap.utils.toArray('.testimonial-card-stack');
 
-    if (window.innerWidth <= 768) {
-        // Simple fade-in for mobile
-        cards.forEach(card => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%"
-                }
-            });
-        });
-        return;
-    }
-
-    // Desktop stacking effect
+    // Simple fade-in for ALL devices
     cards.forEach((card, index) => {
-        const cardContent = card.querySelector('.card-content');
-
-        // Calculate scale based on card index
-        const scaleStart = 1 - (index * 0.05);
-
-        // Initial state - cards start stacked
-        gsap.set(card, {
-            scale: scaleStart,
-            transformOrigin: 'center top'
+        // Animation: Fade in
+        gsap.from(card, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: card,
+                start: "top 80%"
+            }
         });
 
-        // Pin each card and animate it
+        // Sound Trigger: Plays when card scrolls UP and out of view (top leaves viewport)
         ScrollTrigger.create({
             trigger: card,
-            start: "top top+=100",
-            end: () => index === cards.length - 1 ? "bottom top+=100" : `+=${window.innerHeight * 0.8}`,
-            pin: true,
-            pinSpacing: false,
-            scrub: 0.5,
-            animation: gsap.timeline()
-                .to(card, {
-                    scale: scaleStart - 0.1,
-                    opacity: 0.5,
-                    rotation: -5,
-                    ease: "none"
-                })
-                .to(cardContent, {
-                    boxShadow: `
-                        0 20px 60px rgba(0, 0, 0, 0.5),
-                        0 0 100px rgba(212, 175, 55, 0.3)
-                    `,
-                    ease: "none"
-                }, 0),
-            onUpdate: (self) => {
-                // Smooth glow transition
-                const progress = self.progress;
-                const glowIntensity = Math.max(0, 1 - progress);
-
-                cardContent.style.boxShadow = `
-                    0 20px 60px rgba(0, 0, 0, 0.5),
-                    0 0 ${40 + (glowIntensity * 60)}px rgba(212, 175, 55, ${0.1 + (glowIntensity * 0.2)})
-                `;
-            }
+            start: "top top",
+            onEnter: () => {
+                if (audio.enabled && index < 2) {
+                    const flipSound = audio.flip.cloneNode();
+                    flipSound.volume = 0.5;
+                    flipSound.play().catch(() => { });
+                }
+            },
+            once: false
         });
     });
 }
@@ -320,7 +284,7 @@ function initFAQ() {
 
 // --- COUNTDOWN LOGIC ---
 function initCountdown() {
-    const targetDate = new Date("January 9, 2026 00:00:00").getTime();
+    const targetDate = new Date("December 4, 2025 00:00:00").getTime();
     let fireworksTriggered = false;
 
     function updateTimer() {
@@ -349,7 +313,19 @@ function initCountdown() {
         document.getElementById("days").innerText = days < 10 ? "0" + days : days;
         document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
         document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+        const prevSeconds = document.getElementById("seconds").innerText;
+        const newSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+        if (prevSeconds !== newSeconds) {
+            document.getElementById("seconds").innerText = newSeconds;
+            // Only play tick if audio on AND fireworks NOT started AND hero is visible
+            if (audio.enabled && !fireworksTriggered && isHeroVisible()) {
+                audio.tick.currentTime = 0;
+                audio.tick.volume = 0.5;
+                audio.tick.play().catch(() => { });
+            }
+        }
     }
 
     setInterval(updateTimer, 1000);
@@ -488,6 +464,7 @@ function startFireworks() {
         }
     }
 
+
     // Animation Loop
     function loop() {
         requestAnimationFrame(loop);
@@ -511,6 +488,13 @@ function startFireworks() {
         // Random launch
         if (Math.random() < 0.05) {
             fireworks.push(new Firework(width / 2, height, random(0, width), random(0, height / 2)));
+            // Play sound for each launch
+            if (audio.enabled && isHeroVisible()) {
+                const fwSound = audio.fireworks.cloneNode();
+                fwSound.volume = 0.4 + Math.random() * 0.2; // Random volume
+                fwSound.playbackRate = 0.8 + Math.random() * 0.4; // Random pitch
+                fwSound.play().catch(() => { });
+            }
         }
     }
 
@@ -561,4 +545,88 @@ function initGallery() {
             scrub: 1.5
         }
     });
+}
+
+// --- MOBILE MENU ---
+function initMobileMenu() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const closeBtn = document.querySelector('.mobile-menu-close');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    const links = document.querySelectorAll('.mobile-nav-link');
+
+    function toggleMenu() {
+        if (!overlay) return;
+        overlay.classList.toggle('active');
+        document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+    }
+
+    if (toggle) toggle.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+
+    // Close menu when link is clicked
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMenu();
+        });
+    });
+
+    // Handle Smooth Scroll for all anchor links (Desktop & Mobile)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            if (window.lenis) {
+                window.lenis.scrollTo(targetId);
+            } else {
+                document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+// --- AUDIO SYSTEM ---
+const audio = {
+    tick: new Audio('public/Audio/clock-tick.mp3'),
+    flip: new Audio('public/Audio/paper-flip.mp3'),
+    fireworks: new Audio('public/Audio/fireworks.mp3'),
+    enabled: false
+};
+
+// Enable audio on first interaction
+['click', 'keydown', 'touchstart'].forEach(event => {
+    window.addEventListener(event, () => {
+        if (!audio.enabled) {
+            audio.enabled = true;
+
+            // Unlock all audio buffers
+            [audio.tick, audio.flip, audio.fireworks].forEach(snd => {
+                snd.muted = false; // FORCE UNMUTE
+                snd.volume = 0.5; // Set separate volumes later if needed, but ensure not 0
+                snd.preload = 'auto';
+
+                const playPromise = snd.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        snd.pause();
+                        snd.currentTime = 0;
+                    }).catch(error => {
+                        console.log("Audio unlock failed for one buffer:", error);
+                    });
+                }
+            });
+        }
+    }, { once: true });
+});
+
+// --- HELPER: CHECK IF HERO IS VISIBLE ---
+function isHeroVisible() {
+    const hero = document.getElementById('hero');
+    if (!hero) return false;
+    const rect = hero.getBoundingClientRect();
+    return (
+        rect.top < window.innerHeight &&
+        rect.bottom > 0
+    );
 }

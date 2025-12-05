@@ -38,18 +38,50 @@
         </div>
     </div>
 
+    <!-- NAVIGATION -->
+    <nav class="magick-nav">
+        <div class="logo">
+            <img src="public/Logos/Scinnova Logos/Scinnova VIII Logo Horizontal.png" alt="ScinNova" class="nav-logo" />
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-links desktop-only">
+            <a href="#about" class="nav-link">ABOUT</a>
+            <a href="#modules" class="nav-link">MODULES</a>
+            <a href="#chronicles" class="nav-link">CHRONICLES</a>
+            <a href="#gallery" class="nav-link">GALLERY</a>
+            <a href="#oracle" class="nav-link">ORACLE</a>
+            <a href="#council" class="nav-link">COUNCIL</a>
+        </div>
+
+        <div class="nav-controls">
+            <a href="https://forms.gle/3d5ZJ53XSoavK8ra7" target="_blank"
+                class="nav-register-btn desktop-only">REGISTER</a>
+            <button class="mobile-menu-toggle mobile-only" aria-label="Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <button class="mobile-menu-close" aria-label="Close Menu">×</button>
+        <div class="mobile-nav-links">
+            <a href="#hero" class="mobile-nav-link">HOME</a>
+            <a href="#about" class="mobile-nav-link">ABOUT</a>
+            <a href="#modules" class="mobile-nav-link">MODULES</a>
+            <a href="#chronicles" class="mobile-nav-link">CHRONICLES</a>
+            <a href="#gallery" class="mobile-nav-link">GALLERY</a>
+            <a href="#oracle" class="mobile-nav-link">ORACLE</a>
+            <a href="#council" class="mobile-nav-link">COUNCIL</a>
+            <a href="https://forms.gle/3d5ZJ53XSoavK8ra7" target="_blank" class="mobile-nav-register">REGISTER NOW</a>
+        </div>
+    </div>
+
     <!-- SMOOTH SCROLL WRAPPER -->
     <div id="smooth-wrapper">
         <div id="smooth-content">
-            <!-- NAVIGATION -->
-            <nav class="magick-nav">
-                <div class="logo">
-                    <img src="public/Logos/Scinnova Logos/Scinnova VIII Logo Horizontal.png" alt="ScinNova"
-                        class="nav-logo" />
-                </div>
-                <a href="https://forms.gle/3d5ZJ53XSoavK8ra7" target="_blank" class="nav-register-btn">REGISTER</a>
-            </nav>
-
             <!-- HERO SECTION -->
             <header class="hero-gate" id="hero">
                 <canvas id="fireworks-canvas"></canvas>
@@ -108,7 +140,7 @@
                                 Scinnova is Cedar College’s flagship science
                                 competition, designed to be more than just
                                 an academic challenge. It is an immersive
-                                learning experience that brings together 60
+                                learning experience that brings together 100
                                 teams of budding scientists from across
                                 Karachi and Pakistan.
                             </p>
@@ -155,6 +187,7 @@
                                 </div>
                                 <div class="module-body">
                                     <h3 class="module-title">ARCANUM</h3>
+                                    <span class="module-subtitle">Puzzle Solving</span>
                                     <p class="module-desc">
                                         Arcanum introduces students to the
                                         intersection of science and mystery.
@@ -186,6 +219,7 @@
                                     <h3 class="module-title">
                                         ILLUMINATIO
                                     </h3>
+                                    <span class="module-subtitle">Chemistry</span>
                                     <p class="module-desc">
                                         In Illuminatio, students engage in
                                         hands-on experiments, delving into
@@ -213,6 +247,7 @@
                                     <h3 class="module-title">
                                         PTOLEMY'S PUZZLE
                                     </h3>
+                                    <span class="module-subtitle">Maths</span>
                                     <p class="module-desc">
                                         Named after the renowned
                                         mathematician Ptolemy, this module
@@ -239,6 +274,7 @@
                                     <h3 class="module-title">
                                         PLANCK'S PARADOX
                                     </h3>
+                                    <span class="module-subtitle">Physics</span>
                                     <p class="module-desc">
                                         Planck's Paradox brings theoretical
                                         physics to life by guiding students
@@ -264,6 +300,7 @@
                                 </div>
                                 <div class="module-body">
                                     <h3 class="module-title">ASCLEPIUS</h3>
+                                    <span class="module-subtitle">Biology</span>
                                     <p class="module-desc">
                                         Named after the Greek god of
                                         medicine, Asclepius offers students
@@ -288,6 +325,7 @@
                                 </div>
                                 <div class="module-body">
                                     <h3 class="module-title">REDSHIFT</h3>
+                                    <span class="module-subtitle">Astronomy</span>
                                     <p class="module-desc">
                                         Redshift immerses students in the
                                         mysteries of space, challenging them
@@ -318,6 +356,7 @@
                                 </div>
                                 <div class="module-body">
                                     <h3 class="module-title">AUTOMATON</h3>
+                                    <span class="module-subtitle">Robotics</span>
                                     <p class="module-desc">
                                         In the Robotics module, students
                                         dive into robotics, applying
@@ -350,6 +389,7 @@
                                     <h3 class="module-title">
                                         FREUD'S FORESIT
                                     </h3>
+                                    <span class="module-subtitle">Psychology</span>
                                     <p class="module-desc">
                                         This module encourages students to
                                         enter the fascinating field of
@@ -380,6 +420,7 @@
                                 </div>
                                 <div class="module-body">
                                     <h3 class="module-title">QWERTY</h3>
+                                    <span class="module-subtitle">Computer Science</span>
                                     <p class="module-desc">
                                         The description will be added later.
                                     </p>
@@ -394,7 +435,8 @@
             </section>
 
             <!-- TESTIMONIALS (Stacking Cards) -->
-            <section class="testimonials-section">
+            <!-- TESTIMONIALS (Stacking Cards) -->
+            <section class="testimonials-section" id="chronicles">
                 <div class="container">
                     <h2 class="section-title center-text testimonials-title">
                         THE <span class="gold-text">CHRONICLES</span>
@@ -404,25 +446,6 @@
                     <div class="testimonial-card-stack" data-index="0">
                         <div class="card-content">
                             <div class="card-number">I</div>
-                            <p class="quote">
-                                "SCINNOVA is one of those rare experiences
-                                that you feel proud to be a part of. It's
-                                reassuring to know there is a forum where
-                                fun-loving and curious minds are nurtured to
-                                better understand how to integrate
-                                real-world problems with their knowledge and
-                                available tools. A true marvel in its
-                                execution, SCINNOVA represents the immense
-                                potential of this generation."
-                            </p>
-                            <div class="author-section">
-                                <p class="author">Dr. Athar Osama</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card-stack" data-index="1">
-                        <div class="card-content">
-                            <div class="card-number">II</div>
                             <p class="quote">
                                 "Having attended SCINNOVA last year, I was
                                 inspired by the passion and dedication of
@@ -437,7 +460,38 @@
                                 innovators."
                             </p>
                             <div class="author-section">
-                                <p class="author">Dr. Sabieh Anwar</p>
+                                <img src="public/Pictures/Sabieh Anwar.jpeg" alt="Dr. Sabieh Anwar" class="author-img">
+                                <div class="author-info">
+                                    <p class="author">Dr. Sabieh Anwar</p>
+                                    <p class="author-role">Former Dean at the LUMS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card-stack" data-index="1">
+                        <div class="card-content">
+                            <div class="card-number">II</div>
+                            <p class="quote">
+                                "Having attended SCINNOVA last year, I was
+                                inspired by the passion and dedication of
+                                the participants and organizing team. This
+                                "SCINNOVA is one of those rare experiences
+                                that you feel proud to be a part of. It's
+                                reassuring to know there is a forum where
+                                fun-loving and curious minds are nurtured to
+                                better understand how to integrate
+                                real-world problems with their knowledge and
+                                available tools. A true marvel in its
+                                execution, SCINNOVA represents the immense
+                                potential of this generation."
+                            </p>
+                            <div class="author-section">
+                                <img src="public/Pictures/Ather Usama.jpeg" alt="Dr. Athar Osama" class="author-img">
+                                <div class="author-info">
+                                    <p class="author">Dr. Athar Osama</p>
+                                    <p class="author-role">Founder of INNOVentures Global (Pvt) Ltd. and World Science
+                                        Collaborative Ltd</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -455,7 +509,11 @@
                                 the field of STEM."
                             </p>
                             <div class="author-section">
-                                <p class="author">Ruhab Iqbal</p>
+                                <img src="public/Pictures/Ruhab Iqbal.jpeg" alt="Ruhab Iqbal" class="author-img">
+                                <div class="author-info">
+                                    <p class="author">Ruhab Iqbal</p>
+                                    <p class="author-role">Founder of Prosperity Academy</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -521,7 +579,7 @@
             </section>
 
             <!-- FAQ (The Oracle) -->
-            <section class="section-padding faq-section">
+            <section class="section-padding faq-section" id="oracle">
                 <div class="container">
                     <h2 class="section-title center-text">
                         THE <span class="gold-text">ORACLE</span>
@@ -595,14 +653,14 @@
             </section>
 
             <!-- ORGANIZERS & FOOTER -->
-            <section class="section-padding organizers-section">
+            <section class="section-padding organizers-section" id="council">
                 <div class="container">
                     <h2 class="section-title center-text">
                         THE <span class="gold-text">COUNCIL</span>
                     </h2>
                     <div class="organizers-grid">
                         <div class="organizer-card">
-                            <img src="public/Council/sirhusham.png" alt="Dr Husham Arshad" class="organizer-photo" />
+                            <img src="public/Pictures/sirhusham.png" alt="Dr Husham Arshad" class="organizer-photo" />
                             <h3 class="org-name">Dr Husham Arshad</h3>
                             <p class="org-role">CO-DIRECTOR</p>
                             <p class="org-quote">
@@ -611,7 +669,8 @@
                             </p>
                         </div>
                         <div class="organizer-card">
-                            <img src="public/Council/sirroque.png" alt="Roque Martin D.Mello" class="organizer-photo" />
+                            <img src="public/Pictures/sirroque.png" alt="Roque Martin D.Mello"
+                                class="organizer-photo" />
                             <h3 class="org-name">Roque Martin D.Mello</h3>
                             <p class="org-role">DIRECTOR</p>
                             <p class="org-quote">
@@ -620,7 +679,7 @@
                             </p>
                         </div>
                         <div class="organizer-card">
-                            <img src="public/Council/sirrayyan.png" alt="Rayyan Dawood" class="organizer-photo" />
+                            <img src="public/Pictures/sirrayyan.png" alt="Rayyan Dawood" class="organizer-photo" />
                             <h3 class="org-name">Rayyan Dawood</h3>
                             <p class="org-role">PATRON</p>
                             <p class="org-quote">

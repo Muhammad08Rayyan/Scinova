@@ -85,3 +85,8 @@ Patron
 
 Simple placeholder FAQS (5)
 
+https://www.instagram.com/cedarmindsports/
+
+Sabieh Anwar: former Dean at the LUMS
+Athar Osama: founder of INNOVentures Global (Pvt) Ltd. and World Science Collaborative Ltd
+Ruhab Iqbal:founder Of Prosperity Academy
