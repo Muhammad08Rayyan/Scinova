@@ -56,6 +56,7 @@ gsap.ticker.lagSmoothing(0);
 // --- INITIALIZATION ---
 window.addEventListener("load", () => {
     initLoader();
+    tryAutoPlay(); // Try immediately
     initHero();
     initScroll();
     initFAQ();
@@ -94,7 +95,7 @@ function initLoader() {
 
 // --- HERO ANIMATIONS ---
 function initHero() {
-    const tl = gsap.timeline({ delay: 2.5 });
+    const tl = gsap.timeline({ delay: 0.5 }); // Reduced from 2.5s to 0.5s for instant feel
 
     // Fire Timer Reveal
     tl.from(".fire-timer", {
@@ -211,7 +212,8 @@ function initStackingCards() {
             trigger: card,
             start: "top top",
             onEnter: () => {
-                if (audio.enabled && index < 2) {
+                // Only play sound if audio enabled AND on desktop
+                if (audio.enabled && index < 2 && window.innerWidth > 768) {
                     const flipSound = audio.flip.cloneNode();
                     flipSound.volume = 0.5;
                     flipSound.play().catch(() => { });
@@ -591,11 +593,31 @@ const audio = {
     tick: new Audio('public/Audio/clock-tick.mp3'),
     flip: new Audio('public/Audio/paper-flip.mp3'),
     fireworks: new Audio('public/Audio/fireworks.mp3'),
-    enabled: false
+    enabled: false // Will try to flip to true on load
 };
 
-// Enable audio on first interaction
-['click', 'keydown', 'touchstart'].forEach(event => {
+// Attempt Autoplay on Load
+function tryAutoPlay() {
+    // Try getting one sound to play
+    audio.tick.volume = 0.5;
+    const promise = audio.tick.play();
+
+    if (promise !== undefined) {
+        promise.then(() => {
+            // Autoplay worked!
+            audio.enabled = true;
+            audio.tick.pause();
+            audio.tick.currentTime = 0;
+        }).catch(error => {
+            // Autoplay blocked - wait for interaction
+            // console.log("Autoplay blocked");
+        });
+    }
+}
+
+// Enable audio on ANY interaction or extensive movement
+const unlockEvents = ['click', 'keydown', 'touchstart', 'mousedown', 'pointerdown', 'mousemove', 'wheel', 'scroll'];
+unlockEvents.forEach(event => {
     window.addEventListener(event, () => {
         if (!audio.enabled) {
             audio.enabled = true;
@@ -603,7 +625,7 @@ const audio = {
             // Unlock all audio buffers
             [audio.tick, audio.flip, audio.fireworks].forEach(snd => {
                 snd.muted = false; // FORCE UNMUTE
-                snd.volume = 0.5; // Set separate volumes later if needed, but ensure not 0
+                snd.volume = 0.5;
                 snd.preload = 'auto';
 
                 const playPromise = snd.play();
@@ -612,12 +634,12 @@ const audio = {
                         snd.pause();
                         snd.currentTime = 0;
                     }).catch(error => {
-                        console.log("Audio unlock failed for one buffer:", error);
+                        // Silent catch
                     });
                 }
             });
         }
-    }, { once: true });
+    }, { once: true, passive: true }); // passive for scroll/wheel performance
 });
 
 // --- HELPER: CHECK IF HERO IS VISIBLE ---
