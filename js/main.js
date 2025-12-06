@@ -286,7 +286,8 @@ function initFAQ() {
 
 // --- COUNTDOWN LOGIC ---
 function initCountdown() {
-    const targetDate = new Date("December 4, 2025 00:00:00").getTime();
+    // Target: Jan 9, 2026 08:00:00 PKT (UTC+5)
+    const targetDate = new Date("2026-01-09T08:00:00+05:00").getTime();
     let fireworksTriggered = false;
 
     function updateTimer() {

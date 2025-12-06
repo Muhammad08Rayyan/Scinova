@@ -1436,4 +1436,9 @@ h4 {
     .partner-logo {
         height: 40px;
     }
+
+    .mobile-menu-toggle {
+        display: flex;
+        /* Show hamburger on mobile */
+    }
 }
