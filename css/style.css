@@ -815,6 +815,51 @@ h4 {
   opacity: 0;
   pointer-events: none;
 }
+
+/* --- GALLERY GRID --- */
+.gallery-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+  position: relative;
+  z-index: 2;
+}
+.gallery-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: 32%;
+  position: relative;
+  will-change: transform;
+}
+/* Staggering handles by JS, but base styles here */
+.gallery-item {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--muted-gold);
+  background: var(--shadow-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.gallery-item:hover {
+  border-color: var(--ancient-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+.gallery-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.gallery-item:hover .gallery-img {
+  transform: scale(1.1);
+}
+
 /* --- TESTIMONIALS / CHRONICLES --- */
 .testimonials-section {
   padding: clamp(6rem, 12vw, 10rem) 0;
@@ -1322,5 +1367,73 @@ h4 {
   }
   .mobile-menu-toggle {
     display: flex;
+  }
+}
+
+/* --- MOBILE OVERRIDES --- */
+@media (max-width: 768px) {
+  /* Modules: Vertical Stack Layout */
+  .horizontal-scroll-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0 0 2rem 0;
+    display: block;
+    background: var(--void-black); /* Ensure background covers full height */
+  }
+  .horizontal-scroll-wrapper {
+    width: 100%;
+    overflow: visible; /* No scroll container needed for vertical */
+    padding: 0;
+    height: auto;
+  }
+  .hs-content {
+    flex-direction: column; /* Stack vertically */
+    height: auto !important;
+    width: 100%;
+    gap: 3rem; /* Spacing between cards */
+    margin: 0;
+    padding: 2rem 0; /* Padding top/bottom of list */
+  }
+
+  /* Title Card Adjustment */
+  .module-title-card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 2rem 0 1rem 0; /* "Spacing up and down the heading" */
+    padding: 0;
+  }
+  .vertical-title {
+    flex-direction: row; /* "Look proper" -> Horizontal text */
+    gap: 1rem;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  /* Module Cards */
+  .module-card {
+    width: 90vw !important;
+    height: auto !important;
+    min-height: 400px; /* Ensure visibility */
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  /* Remove Spacers & Arrow */
+  .module-spacer-card,
+  .module-next-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Hero Clock: Phones Only */
+  .hero-clock-img {
+    max-height: 70vh;
+    margin-top: 2vh;
+    transform: scale(1.25) translateY(-5%);
+  }
+  .fire-timer-wrapper {
+    margin-top: 10vh;
   }
 }
