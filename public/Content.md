@@ -60,9 +60,9 @@ The description will be added later
 
 "SCINNOVA is one of those rare experiences that you feel proud to be a part of. It’s reassuring to know there is a forum where fun-loving and curious minds are nurtured to better understand how to integrate real-world problems with their knowledge and available tools. A true marvel in its execution, SCINNOVA represents the immense potential of this generation."
 
-* Dr. Athar Osama
+- Dr. Athar Osama
   "Having attended SCINNOVA last year, I was inspired by the passion and dedication of the participants and organizing team. This event nurtures innovative thinking and problem-solving skills. The commitment to excellence highlights the impressive capabilities of our youth and lays the groundwork for a future where science and creativity thrive. SCINNOVA is a testament to the potential of the next generation of innovators."
-* Dr. Sabieh Anwar
+- Dr. Sabieh Anwar
   "SCINNOVA has been a journey of both challenges and triumphs. We’ve experienced the full spectrum of burnout and success through countless hours of dedicated work. Each year, we surpass our previous achievements, continuously striving to offer every young mind an opportunity to excel in the field of STEM."
 
 - Ruhab Iqbal

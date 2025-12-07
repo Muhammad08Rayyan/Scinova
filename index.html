@@ -1,727 +1,735 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Cedar College's International Inter-School Science Olympiad" />
+    <meta
+      name="description"
+      content="Cedar College's International Inter-School Science Olympiad"
+    />
     <meta name="keywords" content="Scinova, Scinova 9, Scinova IX" />
     <meta name="author" content="Muhammad Rayyan Kashif" />
     <title>ScinNova IX</title>
-    <link rel="icon" type="image/x-icon" href="public/Icon.ico">
-
-    <!-- Styles -->
+    <link rel="icon" type="image/x-icon" href="public/Icon.ico" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preload" as="image" href="public/Pictures/1.jpg" />
-
-    <!-- GSAP & Lenis CDNs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-
-<body>
-    <!-- NOISE OVERLAY -->
+  </head>
+  <body>
     <div class="noise-overlay"></div>
-
-    <!-- CURSOR -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
-
-    <!-- PRELOADER (Simplified) -->
     <div class="loader">
-        <div class="loader-content">
-            <div class="loader-text">SCINNOVA IX</div>
-            <div class="loader-subtext">COMING JAN 9, 2026</div>
-        </div>
+      <div class="loader-content">
+        <div class="loader-text">SCINNOVA IX</div>
+        <div class="loader-subtext">COMING JAN 9, 2026</div>
+      </div>
     </div>
-
-
-
-    <!-- SMOOTH SCROLL WRAPPER -->
     <div id="smooth-wrapper">
-        <div id="smooth-content">
-            <!-- HERO SECTION -->
-            <header class="hero-gate" id="hero">
-                <canvas id="fireworks-canvas"></canvas>
-                <div class="hero-bg"></div>
-                <div class="container hero-container">
-                    <!-- Mobile Hero Logo -->
-                    <img src="public/Logos/Scinnova Logos/IX.png" class="mobile-hero-logo mobile-only"
-                        alt="ScinNova Logo" />
-
-                    <!-- FIRE TIMER -->
-                    <div class="fire-timer-wrapper">
-                        <div class="fire-timer">
-                            <div class="timer-unit">
-                                <span id="days">00</span>
-                                <label>DAYS</label>
-                            </div>
-                            <div class="timer-separator">:</div>
-                            <div class="timer-unit">
-                                <span id="hours">00</span>
-                                <label>HOURS</label>
-                            </div>
-                            <div class="timer-separator">:</div>
-                            <div class="timer-unit">
-                                <span id="minutes">00</span>
-                                <label>MINS</label>
-                            </div>
-                            <div class="timer-separator">:</div>
-                            <div class="timer-unit">
-                                <span id="seconds">00</span>
-                                <label>SECS</label>
-                            </div>
-                        </div>
-                        <h1 class="hero-title-small">THE NINTH AGE</h1>
-                        <!-- Mobile Only Register Button -->
-                        <a href="https://scinnova.cedar.edu.pk" class="hero-register-btn mobile-only">REGISTER NOW</a>
-                    </div>
-
-                    <div class="hero-meta">
-                        <div class="scroll-indicator">
-                            <span>SCROLL TO ENTER</span>
-                            <div class="line"></div>
-                        </div>
-                    </div>
+      <div id="smooth-content">
+        <header class="hero-gate" id="hero">
+          <canvas id="fireworks-canvas"></canvas>
+          <div class="hero-bg"></div>
+          <div class="container hero-container">
+            <img
+              src="public/Logos/Scinnova Logos/IX.png"
+              class="mobile-hero-logo mobile-only"
+              alt="ScinNova Logo"
+            />
+            <div class="fire-timer-wrapper">
+              <div class="fire-timer">
+                <div class="timer-unit">
+                  <span id="days">00</span>
+                  <label>DAYS</label>
                 </div>
-            </header>
-
-            <!-- ABOUT SECTION (Broken Grid) -->
-            <section class="section-padding editorial-section" id="about">
-                <div class="container">
-                    <div class="editorial-grid">
-                        <div class="editorial-text">
-                            <h2 class="section-title reveal-text">
-                                WHAT IS<br /><span class="gold-text">SCINNOVA?</span>
-                            </h2>
-                            <p class="body-text reveal-text">
-                                Scinnova is Cedar College’s flagship science
-                                competition, designed to be more than just
-                                an academic challenge. It is an immersive
-                                learning experience that brings together 100
-                                teams of budding scientists from across
-                                Karachi and Pakistan.
-                            </p>
-                            <p class="body-text reveal-text">
-                                This year’s Scinnova consists of nine
-                                modules, each an intellectual arena
-                                representing a distinct field of science.
-                                Together, they showcase how a deep,
-                                interdisciplinary understanding of our world
-                                fosters true critical thinking,
-                                collaboration, and innovation.
-                            </p>
-                        </div>
-                        <div class="editorial-image parallax-img-wrapper">
-                            <div class="image-frame">
-                                <img src="public/Pictures/1.jpg" alt="ScinNova Atmosphere" class="parallax-img" />
-                            </div>
-                            <div class="floating-caption">
-                                <span>EST. 2017</span>
-                                <span>KARACHI, PK</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-unit">
+                  <span id="hours">00</span>
+                  <label>HOURS</label>
                 </div>
-            </section>
-
-            <!-- MODULES SECTION (Horizontal Scroll) -->
-            <section class="horizontal-scroll-section" id="modules">
-                <div class="horizontal-scroll-wrapper">
-                    <div class="hs-content">
-                        <div class="hs-item title-item">
-                            <h2 class="hs-title">
-                                THE<br /><span class="outline-text">MODULES</span>
-                            </h2>
-                        </div>
-
-                        <!-- Module 1 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">I</div>
-                                    <img src="public/Logos/Module Logos/arcanum trans2.png"
-                                        class="module-icon icon-arcanum" alt="Arcanum" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">ARCANUM</h3>
-                                    <span class="module-subtitle">Puzzle Solving</span>
-                                    <p class="module-desc">
-                                        Arcanum introduces students to the
-                                        intersection of science and mystery.
-                                        Using forensic science, data
-                                        encryption, and logic puzzles, teams
-                                        tackle scenarios involving
-                                        cryptographic challenges and crime
-                                        scene analysis. This module develops
-                                        analytical and deductive reasoning
-                                        skills, teaching students the
-                                        applications of mathematics, logic,
-                                        and technology in solving real-world
-                                        puzzles and uncovering hidden
-                                        patterns.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 2 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">II</div>
-                                    <img src="public/Logos/Module Logos/illuminatio.png"
-                                        class="module-icon icon-ptolemy" alt="Ptolemy's Puzzles" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">
-                                        ILLUMINATIO
-                                    </h3>
-                                    <span class="module-subtitle">Chemistry</span>
-                                    <p class="module-desc">
-                                        In Illuminatio, students engage in
-                                        hands-on experiments, delving into
-                                        the composition and transformation
-                                        of matter. Teams conduct experiments
-                                        that reveal chemical reactions,
-                                        molecular structures, and energy
-                                        dynamics. This module emphasizes
-                                        safety protocols, attention to
-                                        detail, and the scientific method.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 3 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">III</div>
-                                    <img src="public/Logos/Module Logos/Ptolemy’s.png" class="module-icon icon-ptolemy"
-                                        alt="Ptolemy" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">
-                                        PTOLEMY'S PUZZLE
-                                    </h3>
-                                    <span class="module-subtitle">Maths</span>
-                                    <p class="module-desc">
-                                        Named after the renowned
-                                        mathematician Ptolemy, this module
-                                        involves complex problem-solving,
-                                        mathematical modeling, and logical
-                                        puzzles. Students apply algebra,
-                                        geometry, and calculus to solve
-                                        theoretical and practical
-                                        challenges.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 4 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">IV</div>
-                                    <img src="public/Logos/Module Logos/planks paradoc (1 line).png"
-                                        class="module-icon icon-planck" alt="Planck" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">
-                                        PLANCK'S PARADOX
-                                    </h3>
-                                    <span class="module-subtitle">Physics</span>
-                                    <p class="module-desc">
-                                        Planck's Paradox brings theoretical
-                                        physics to life by guiding students
-                                        through paradoxes and scenarios
-                                        where common sense meets scientific
-                                        complexity. From exploring quantum
-                                        mechanics to relativistic
-                                        principles, students grapple with
-                                        concepts that stretch their critical
-                                        thinking.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 5 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">V</div>
-                                    <img src="public/Logos/Module Logos/Asclepius.PNG"
-                                        class="module-icon icon-asclepius" alt="Asclepius" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">ASCLEPIUS</h3>
-                                    <span class="module-subtitle">Biology</span>
-                                    <p class="module-desc">
-                                        Named after the Greek god of
-                                        medicine, Asclepius offers students
-                                        a journey into the life sciences.
-                                        Through dissections, genetic
-                                        analysis, and simulations of
-                                        biological processes, participants
-                                        experience the complexity of living
-                                        organisms.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 6 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">VI</div>
-                                    <img src="public/Logos/Module Logos/Redshift logo.png"
-                                        class="module-icon icon-redshift" alt="RedShift" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">REDSHIFT</h3>
-                                    <span class="module-subtitle">Astronomy</span>
-                                    <p class="module-desc">
-                                        Redshift immerses students in the
-                                        mysteries of space, challenging them
-                                        to explore concepts of astrophysics
-                                        and cosmology. Teams use telescopic
-                                        data, star maps, and astrophysical
-                                        simulations to investigate celestial
-                                        phenomena. The module nurtures
-                                        observational skills and scientific
-                                        reasoning, encouraging students to
-                                        draw connections between abstract
-                                        physics theories and tangible data
-                                        from the universe, thus
-                                        understanding our cosmic
-                                        neighborhood in a holistic manner.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 7 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">VII</div>
-                                    <img src="public/Logos/Module Logos/Automaton Logo.png"
-                                        class="module-icon icon-automaton" alt="Automaton" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">AUTOMATON</h3>
-                                    <span class="module-subtitle">Robotics</span>
-                                    <p class="module-desc">
-                                        In the Robotics module, students
-                                        dive into robotics, applying
-                                        engineering principles, physics, and
-                                        coding skills to design and program
-                                        functional robots. Participants
-                                        collaborate to solve specific tasks,
-                                        fostering an understanding of
-                                        mechanics, control systems, and
-                                        problem-solving through real-time
-                                        testing and modification. Students
-                                        learn how mechanical systems and
-                                        computer algorithms can harmonize,
-                                        illustrating the interdisciplinary
-                                        nature of engineering.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 8 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">VIII</div>
-                                    <img src="public/Logos/Module Logos/Freud logo.PNG" class="module-icon icon-freud"
-                                        alt="Freud" />
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">
-                                        FREUD'S FORESIT
-                                    </h3>
-                                    <span class="module-subtitle">Psychology</span>
-                                    <p class="module-desc">
-                                        This module encourages students to
-                                        enter the fascinating field of
-                                        psychology, focusing on human
-                                        behavior and cognitive functions.
-                                        Through experimental tasks,
-                                        role-playing, and group scenarios,
-                                        students study psychological
-                                        theories and apply them to real-life
-                                        settings. Freud's Foresit reinforces
-                                        the importance of understanding
-                                        human interactions, fostering
-                                        empathy, and exploring the human
-                                        mind. This module reminds students
-                                        that scientific inquiry extends
-                                        beyond physical phenomena to include
-                                        the intricacies of human nature.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Module 9 -->
-                        <div class="hs-item module-card">
-                            <div class="card-inner">
-                                <div class="module-header">
-                                    <div class="module-number">IX</div>
-                                </div>
-                                <div class="module-body">
-                                    <h3 class="module-title">QWERTY</h3>
-                                    <span class="module-subtitle">Computer Science</span>
-                                    <p class="module-desc">
-                                        The description will be added later.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Invisible spacer to ensure 9th card shows fully -->
-                        <div class="hs-item spacer-card"></div>
-                    </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-unit">
+                  <span id="minutes">00</span>
+                  <label>MINS</label>
                 </div>
-            </section>
-
-            <!-- TESTIMONIALS (Stacking Cards) -->
-            <!-- TESTIMONIALS (Stacking Cards) -->
-            <section class="testimonials-section" id="chronicles">
-                <div class="container">
-                    <h2 class="section-title center-text testimonials-title">
-                        THE <span class="gold-text">CHRONICLES</span>
-                    </h2>
+                <div class="timer-separator">:</div>
+                <div class="timer-unit">
+                  <span id="seconds">00</span>
+                  <label>SECS</label>
                 </div>
-                <div class="stacking-cards-container">
-                    <div class="testimonial-card-stack" data-index="0">
-                        <div class="card-content">
-                            <div class="card-number">I</div>
-                            <p class="quote">
-                                "Having attended SCINNOVA last year, I was
-                                inspired by the passion and dedication of
-                                the participants and organizing team. This
-                                event nurtures innovative thinking and
-                                problem-solving skills. The commitment to
-                                excellence highlights the impressive
-                                capabilities of our youth and lays the
-                                groundwork for a future where science and
-                                creativity thrive. SCINNOVA is a testament
-                                to the potential of the next generation of
-                                innovators."
-                            </p>
-                            <div class="author-section">
-                                <img src="public/Pictures/Sabieh Anwar.jpeg" alt="Dr. Sabieh Anwar" class="author-img">
-                                <div class="author-info">
-                                    <p class="author">Dr. Sabieh Anwar</p>
-                                    <p class="author-role">Former Dean at the LUMS</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card-stack" data-index="1">
-                        <div class="card-content">
-                            <div class="card-number">II</div>
-                            <p class="quote">
-                                "Having attended SCINNOVA last year, I was
-                                inspired by the passion and dedication of
-                                the participants and organizing team. This
-                                "SCINNOVA is one of those rare experiences
-                                that you feel proud to be a part of. It's
-                                reassuring to know there is a forum where
-                                fun-loving and curious minds are nurtured to
-                                better understand how to integrate
-                                real-world problems with their knowledge and
-                                available tools. A true marvel in its
-                                execution, SCINNOVA represents the immense
-                                potential of this generation."
-                            </p>
-                            <div class="author-section">
-                                <img src="public/Pictures/Ather Usama.jpeg" alt="Dr. Athar Osama" class="author-img">
-                                <div class="author-info">
-                                    <p class="author">Dr. Athar Osama</p>
-                                    <p class="author-role">Founder of INNOVentures Global (Pvt) Ltd. and World Science
-                                        Collaborative Ltd</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card-stack" data-index="2">
-                        <div class="card-content">
-                            <div class="card-number">III</div>
-                            <p class="quote">
-                                "SCINNOVA has been a journey of both
-                                challenges and triumphs. We've experienced
-                                the full spectrum of burnout and success
-                                through countless hours of dedicated work.
-                                Each year, we surpass our previous
-                                achievements, continuously striving to offer
-                                every young mind an opportunity to excel in
-                                the field of STEM."
-                            </p>
-                            <div class="author-section">
-                                <img src="public/Pictures/Ruhab Iqbal.jpeg" alt="Ruhab Iqbal" class="author-img">
-                                <div class="author-info">
-                                    <p class="author">Ruhab Iqbal</p>
-                                    <p class="author-role">Founder of Prosperity Academy</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              <h1 class="hero-title-small">THE NINTH AGE</h1>
+              <a
+                href="https://scinnova.cedar.edu.pk"
+                class="hero-register-btn mobile-only"
+                >REGISTER NOW</a
+              >
+            </div>
+            <div class="hero-meta">
+              <div class="scroll-indicator">
+                <span>SCROLL TO ENTER</span>
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <section class="section-padding editorial-section" id="about">
+          <div class="container">
+            <div class="editorial-grid">
+              <div class="editorial-text">
+                <h2 class="section-title reveal-text">
+                  WHAT IS<br /><span class="gold-text">SCINNOVA?</span>
+                </h2>
+                <p class="body-text reveal-text">
+                  Scinnova is Cedar College’s flagship science competition,
+                  designed to be more than just an academic challenge. It is an
+                  immersive learning experience that brings together 100 teams
+                  of budding scientists from across Karachi and Pakistan.
+                </p>
+                <p class="body-text reveal-text">
+                  This year’s Scinnova consists of nine modules, each an
+                  intellectual arena representing a distinct field of science.
+                  Together, they showcase how a deep, interdisciplinary
+                  understanding of our world fosters true critical thinking,
+                  collaboration, and innovation.
+                </p>
+              </div>
+              <div class="editorial-image parallax-img-wrapper">
+                <div class="image-frame">
+                  <img
+                    src="public/Pictures/1.jpg"
+                    alt="ScinNova Atmosphere"
+                    class="parallax-img"
+                  />
                 </div>
-            </section>
-
-            <!-- GALLERY (Parallax Masonry) -->
-            <section class="section-padding gallery-section" id="gallery">
-                <div class="container">
-                    <h2 class="section-title center-text">
-                        TIMELINE OF <span class="outline-text">AGES</span>
-                    </h2>
-                    <div class="gallery-wrapper">
-                        <!-- Column 1 (Slow Up) -->
-                        <div class="gallery-col col-1">
-                            <div class="gallery-item">
-                                <img src="public/Pictures/2.jpg" alt="Gallery 2" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/3.jpg" alt="Gallery 3" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/4.jpg" alt="Gallery 4" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/5.jpg" alt="Gallery 5" />
-                            </div>
-                        </div>
-
-                        <!-- Column 2 (Fast Down/Reverse) -->
-                        <div class="gallery-col col-2">
-                            <div class="gallery-item">
-                                <img src="public/Pictures/6.jpg" alt="Gallery 6" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/7.jpg" alt="Gallery 7" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/8.jpg" alt="Gallery 8" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/9.jpg" alt="Gallery 9" />
-                            </div>
-                        </div>
-
-                        <!-- Column 3 (Slow Up) -->
-                        <div class="gallery-col col-3">
-                            <div class="gallery-item">
-                                <img src="public/Pictures/10.jpg" alt="Gallery 10" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/11.jpg" alt="Gallery 11" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/12.jpg" alt="Gallery 12" />
-                            </div>
-                            <div class="gallery-item">
-                                <img src="public/Pictures/13.jpg" alt="Gallery 13" />
-                            </div>
-                        </div>
-                    </div>
+                <div class="floating-caption">
+                  <span>EST. 2017</span>
+                  <span>KARACHI, PK</span>
                 </div>
-            </section>
-
-            <!-- FAQ (The Oracle) -->
-            <section class="section-padding faq-section" id="oracle">
-                <div class="container">
-                    <h2 class="section-title center-text">
-                        THE <span class="gold-text">ORACLE</span>
-                    </h2>
-                    <div class="faq-wrapper">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Who can participate?</h3>
-                                <span class="toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>
-                                    Students aged 14-18 from any institution
-                                    in Pakistan. Teams must consist of 4-7
-                                    members.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>When is the event?</h3>
-                                <span class="toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>
-                                    January 2026. The exact dates will be
-                                    revealed on the countdown clock.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>How do I register?</h3>
-                                <span class="toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>
-                                    Registration is open via the link in the
-                                    footer. Early bird discounts apply.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Is there a fee?</h3>
-                                <span class="toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>
-                                    Yes, there is a delegation fee and a
-                                    per-participant fee. Details are in the
-                                    registration form.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>What are the prizes?</h3>
-                                <span class="toggle">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>
-                                    Awards include Best Delegation, Module
-                                    Winners, and the coveted ScinNova
-                                    Shield.
-                                </p>
-                            </div>
-                        </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="horizontal-scroll-section" id="modules">
+          <div class="horizontal-scroll-wrapper">
+            <div class="hs-content">
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">I</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">ARCANUM</h3>
+                      <span class="module-subtitle">Puzzle Solving</span>
                     </div>
+                    <img
+                      src="public/Logos/Module Logos/arcanum trans2.png"
+                      class="module-icon icon-arcanum"
+                      alt="Arcanum"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      Arcanum blends science with mystery through forensic
+                      science, data encryption, and logic puzzles. Teams tackle
+                      cryptographic challenges and crime scene analysis,
+                      developing analytical and deductive reasoning skills.
+                      Students learn to apply mathematics, logic, and technology
+                      to solve real-world puzzles and uncover hidden patterns.
+                    </p>
+                  </div>
                 </div>
-            </section>
-
-            <!-- ORGANIZERS & FOOTER -->
-            <section class="section-padding organizers-section" id="council">
-                <div class="container">
-                    <h2 class="section-title center-text">
-                        THE <span class="gold-text">COUNCIL</span>
-                    </h2>
-                    <div class="organizers-grid">
-                        <div class="organizer-card">
-                            <img src="public/Pictures/sirhusham.png" alt="Dr Husham Arshad" class="organizer-photo" />
-                            <h3 class="org-name">Dr Husham Arshad</h3>
-                            <p class="org-role">CO-DIRECTOR</p>
-                            <p class="org-quote">
-                                "You just need to listen to the inner
-                                voices."
-                            </p>
-                        </div>
-                        <div class="organizer-card">
-                            <img src="public/Pictures/sirroque.png" alt="Roque Martin D.Mello"
-                                class="organizer-photo" />
-                            <h3 class="org-name">Roque Martin D.Mello</h3>
-                            <p class="org-role">DIRECTOR</p>
-                            <p class="org-quote">
-                                "Every single piece of information is
-                                important."
-                            </p>
-                        </div>
-                        <div class="organizer-card">
-                            <img src="public/Pictures/sirrayyan.png" alt="Rayyan Dawood" class="organizer-photo" />
-                            <h3 class="org-name">Rayyan Dawood</h3>
-                            <p class="org-role">PATRON</p>
-                            <p class="org-quote">
-                                "Skills can enhance once interest is
-                                developed."
-                            </p>
-                        </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">II</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">ILLUMINATIO</h3>
+                      <span class="module-subtitle">Chemistry</span>
                     </div>
+                    <img
+                      src="public/Logos/Module Logos/illuminatio.png"
+                      class="module-icon icon-illuminatio"
+                      alt="Illuminatio"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      In Illuminatio, students engage in hands-on experiments,
+                      delving into the composition and transformation of matter.
+                      Teams conduct experiments that reveal chemical reactions,
+                      molecular structures, and energy dynamics. This module
+                      emphasizes safety protocols, attention to detail, and the
+                      scientific method.
+                    </p>
+                  </div>
                 </div>
-            </section>
-
-            <footer class="main-footer">
-                <div class="footer-content">
-                    <img src="public/Logos/Scinnova Logos/Scinnova Gear.png" alt="ScinNova Gear" class="footer-gear" />
-                    <h3 class="footer-cta">AWAITING YOUR ARRIVAL</h3>
-                    <a href="https://forms.gle/3d5ZJ53XSoavK8ra7" target="_blank" class="cta-btn magnetic-btn">REGISTER
-                        NOW</a>
-
-                    <!-- PARTNERS -->
-                    <div class="footer-partners">
-                        <a href="https://www.instagram.com/cords.cedar/" target="_blank" class="partner-link">
-                            <img src="public/Logos/Society Logos/CoRDS Logo White .png" alt="CORDS"
-                                class="partner-logo" />
-                        </a>
-                        <a href="https://crew.cedar.edu.pk/" target="_blank" class="partner-link">
-                            <img src="public/Logos/Society Logos/Crew Logo.png" alt="CREW" class="partner-logo" />
-                        </a>
-                        <a href="https://cedar-codes.vercel.app/" target="_blank" class="partner-link">
-                            <img src="public/Logos/Society Logos/Codes Logo.png" alt="CODES" class="partner-logo" />
-                        </a>
-                        <a href="https://www.instagram.com/juno.cedar/" target="_blank" class="partner-link">
-                            <img src="public/Logos/Society Logos/The Juno Circle Logo White.png" alt="Juno Circle"
-                                class="partner-logo" />
-                        </a>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">III</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">PTOLEMY'S PUZZLE</h3>
+                      <span class="module-subtitle">Maths</span>
                     </div>
+                    <img
+                      src="public/Logos/Module Logos/Ptolemy’s.png"
+                      class="module-icon icon-ptolemy"
+                      alt="Ptolemy"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      Named after the renowned mathematician Ptolemy, this
+                      module involves complex problem-solving, mathematical
+                      modeling, and logical puzzles. Students apply algebra,
+                      geometry, and calculus to solve theoretical and practical
+                      challenges, pushing the boundaries of their mathematical
+                      understanding in both abstract and real-world contexts.
+                    </p>
+                  </div>
                 </div>
-            </footer>
-        </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">IV</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">PLANCK'S PARADOX</h3>
+                      <span class="module-subtitle">Physics</span>
+                    </div>
+                    <img
+                      src="public/Logos/Module Logos/planks paradoc (1 line).png"
+                      class="module-icon icon-planck"
+                      alt="Planck"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      Planck's Paradox brings theoretical physics to life,
+                      guiding students through scenarios where common sense
+                      meets scientific complexity. From quantum mechanics to
+                      relativistic principles, students grapple with deep
+                      concepts that stretch their critical thinking and
+                      challenge their understanding of the fundamental laws of
+                      the universe.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">V</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">ASCLEPIUS</h3>
+                      <span class="module-subtitle">Biology</span>
+                    </div>
+                    <img
+                      src="public/Logos/Module Logos/Asclepius.PNG"
+                      class="module-icon icon-asclepius"
+                      alt="Asclepius"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      Named after the Greek god of medicine, Asclepius offers an
+                      immersive journey into the life sciences. Through
+                      intricate dissections, genetic analysis, and simulations
+                      of biological processes, participants experience the
+                      profound complexity of living organisms and the delicate
+                      balance of systems that sustain life.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">VI</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">REDSHIFT</h3>
+                      <span class="module-subtitle">Astronomy</span>
+                    </div>
+                    <img
+                      src="public/Logos/Module Logos/Redshift logo.png"
+                      class="module-icon icon-redshift"
+                      alt="RedShift"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      Redshift immerses students in the mysteries of space,
+                      challenging them to explore concepts of astrophysics and
+                      cosmology. Teams use telescopic data, star maps, and
+                      astrophysical simulations to investigate celestial
+                      phenomena. The module nurtures observational skills and
+                      scientific reasoning, encouraging students to draw
+                      connections between abstract physics theories and tangible
+                      data.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">VII</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">AUTOMATON</h3>
+                      <span class="module-subtitle">Robotics</span>
+                    </div>
+                    <img
+                      src="public/Logos/Module Logos/Automaton Logo.png"
+                      class="module-icon icon-automaton"
+                      alt="Automaton"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      In the Robotics module, students dive into robotics,
+                      applying engineering principles, physics, and coding
+                      skills to design and program functional robots.
+                      Participants collaborate to solve specific tasks,
+                      fostering an understanding of mechanics, control systems,
+                      and problem-solving through real-time testing and
+                      modifications.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">VIII</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">FREUD'S FORESIT</h3>
+                      <span class="module-subtitle">Psychology</span>
+                    </div>
+                    <img
+                      src="public/Logos/Module Logos/Freud logo.PNG"
+                      class="module-icon icon-freud"
+                      alt="Freud"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      This module encourages students to enter the fascinating
+                      field of psychology, focusing on human behavior and
+                      cognitive functions. Through experimental tasks and
+                      role-playing, students study psychological theories and
+                      apply them to real-life settings. This fosters empathy and
+                      reminds students that scientific inquiry extends to the
+                      intricacies of human nature.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hs-item module-card">
+                <div class="card-inner">
+                  <div class="module-header">
+                    <div class="module-number">IX</div>
+                    <div class="module-header-text">
+                      <h3 class="module-title">QWERTY</h3>
+                      <span class="module-subtitle">Computer Science</span>
+                    </div>
+                    <img
+                      src="public/Logos/Module Logos/Qwerty.png"
+                      class="module-icon icon-qwerty"
+                      alt="QWERTY"
+                    />
+                  </div>
+                  <div class="module-body">
+                    <p class="module-desc">
+                      QWERTY immerses students in the world of coding, where
+                      logic, algorithms, and problem-solving take center stage.
+                      Through engaging challenges, participants apply
+                      computational thinking to solve problems efficiently,
+                      honing skills that form the foundation of every
+                      programmer’s toolkit.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="testimonials-section" id="chronicles">
+          <div class="container">
+            <h2 class="section-title center-text testimonials-title">
+              THE <span class="gold-text">CHRONICLES</span>
+            </h2>
+          </div>
+          <div class="stacking-cards-container">
+            <div class="testimonial-card-stack" data-index="0">
+              <div class="card-content">
+                <div class="card-number">I</div>
+                <p class="quote">
+                  "Having attended SCINNOVA last year, I was inspired by the
+                  passion and dedication of the participants and organizing
+                  team. This event nurtures innovative thinking and
+                  problem-solving skills. The commitment to excellence
+                  highlights the impressive capabilities of our youth and lays
+                  the groundwork for a future where science and creativity
+                  thrive. SCINNOVA is a testament to the potential of the next
+                  generation of innovators."
+                </p>
+                <div class="author-section">
+                  <img
+                    src="public/Pictures/Sabieh Anwar.jpeg"
+                    alt="Dr. Sabieh Anwar"
+                    class="author-img"
+                  />
+                  <div class="author-info">
+                    <p class="author">Dr. Sabieh Anwar</p>
+                    <p class="author-role">Former Dean at the LUMS</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card-stack" data-index="1">
+              <div class="card-content">
+                <div class="card-number">II</div>
+                <p class="quote">
+                  "Having attended SCINNOVA last year, I was inspired by the
+                  passion and dedication of the participants and organizing
+                  team. This "SCINNOVA is one of those rare experiences that you
+                  feel proud to be a part of. It's reassuring to know there is a
+                  forum where fun-loving and curious minds are nurtured to
+                  better understand how to integrate real-world problems with
+                  their knowledge and available tools. A true marvel in its
+                  execution, SCINNOVA represents the immense potential of this
+                  generation."
+                </p>
+                <div class="author-section">
+                  <img
+                    src="public/Pictures/Ather Usama.jpeg"
+                    alt="Dr. Athar Osama"
+                    class="author-img"
+                  />
+                  <div class="author-info">
+                    <p class="author">Dr. Athar Osama</p>
+                    <p class="author-role">
+                      Founder of INNOVentures Global (Pvt) Ltd. and World
+                      Science Collaborative Ltd
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card-stack" data-index="2">
+              <div class="card-content">
+                <div class="card-number">III</div>
+                <p class="quote">
+                  "SCINNOVA has been a journey of both challenges and triumphs.
+                  We've experienced the full spectrum of burnout and success
+                  through countless hours of dedicated work. Each year, we
+                  surpass our previous achievements, continuously striving to
+                  offer every young mind an opportunity to excel in the field of
+                  STEM."
+                </p>
+                <div class="author-section">
+                  <img
+                    src="public/Pictures/Ruhab Iqbal.jpeg"
+                    alt="Ruhab Iqbal"
+                    class="author-img"
+                  />
+                  <div class="author-info">
+                    <p class="author">Ruhab Iqbal</p>
+                    <p class="author-role">Founder of Prosperity Academy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-padding gallery-section" id="gallery">
+          <div class="container">
+            <h2 class="section-title center-text">
+              TIMELINE OF <span class="outline-text">AGES</span>
+            </h2>
+            <div class="gallery-wrapper">
+              <div class="gallery-col col-1">
+                <div class="gallery-item">
+                  <img src="public/Pictures/2.jpg" alt="Gallery 2" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/3.jpg" alt="Gallery 3" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/4.jpg" alt="Gallery 4" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/5.jpg" alt="Gallery 5" />
+                </div>
+              </div>
+              <div class="gallery-col col-2">
+                <div class="gallery-item">
+                  <img src="public/Pictures/6.jpg" alt="Gallery 6" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/7.jpg" alt="Gallery 7" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/8.jpg" alt="Gallery 8" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/9.jpg" alt="Gallery 9" />
+                </div>
+              </div>
+              <div class="gallery-col col-3">
+                <div class="gallery-item">
+                  <img src="public/Pictures/10.jpg" alt="Gallery 10" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/11.jpg" alt="Gallery 11" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/12.jpg" alt="Gallery 12" />
+                </div>
+                <div class="gallery-item">
+                  <img src="public/Pictures/13.jpg" alt="Gallery 13" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-padding faq-section" id="oracle">
+          <div class="container">
+            <h2 class="section-title center-text">
+              THE <span class="gold-text">ORACLE</span>
+            </h2>
+            <div class="faq-wrapper">
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>Can we register as private candidates?</h3>
+                  <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                  <p>Yes, private teams can register.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>
+                    Restrictions on mixing students from different grades?
+                  </h3>
+                  <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Yes, a Delegation can consist of a mix of O-Level and
+                    A-Level students, provided they are all from the same
+                    institution (or part of the same private team).
+                  </p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>Do early bird registrants get specific benefits?</h3>
+                  <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Teams applying in the Early Bird Round will be given
+                    priority in their module selection, increasing their chances
+                    of getting their preferred slots before they fill up.
+                  </p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>Is it possible to pay the fees in cash?</h3>
+                  <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Participants must "submit the payment in the following bank
+                    account" (Faysal Bank) and then submit a Proof of Payment
+                    Google Form online.
+                  </p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question">
+                  <h3>What is the refund policy?</h3>
+                  <span class="toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                  <p>
+                    Registration fees are non-refundable and non-transferable
+                    once the payment has been processed and verified.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section-padding organizers-section" id="council">
+          <div class="container">
+            <h2 class="section-title center-text">
+              THE <span class="gold-text">COUNCIL</span>
+            </h2>
+            <div class="organizers-grid">
+              <div class="organizer-card">
+                <img
+                  src="public/Pictures/sirhusham.png"
+                  alt="Dr Husham Arshad"
+                  class="organizer-photo"
+                />
+                <h3 class="org-name">Dr Husham Arshad</h3>
+                <p class="org-role">CO-DIRECTOR</p>
+                <p class="org-quote">
+                  "You just need to listen to the inner voices."
+                </p>
+              </div>
+              <div class="organizer-card">
+                <img
+                  src="public/Pictures/sirroque.png"
+                  alt="Roque Martin D.Mello"
+                  class="organizer-photo"
+                />
+                <h3 class="org-name">Roque Martin D.Mello</h3>
+                <p class="org-role">DIRECTOR</p>
+                <p class="org-quote">
+                  "Every single piece of information is important."
+                </p>
+              </div>
+              <div class="organizer-card">
+                <img
+                  src="public/Pictures/sirrayyan.png"
+                  alt="Rayyan Dawood"
+                  class="organizer-photo"
+                />
+                <h3 class="org-name">Rayyan Dawood</h3>
+                <p class="org-role">PATRON</p>
+                <p class="org-quote">
+                  "Skills can enhance once interest is developed."
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="main-footer">
+          <div class="footer-content">
+            <img
+              src="public/Logos/Scinnova Logos/Scinnova Gear.png"
+              alt="ScinNova Gear"
+              class="footer-gear"
+            />
+            <h3 class="footer-cta">AWAITING YOUR ARRIVAL</h3>
+            <a
+              href="https://forms.gle/3d5ZJ53XSoavK8ra7"
+              target="_blank"
+              class="cta-btn magnetic-btn"
+              >REGISTER NOW</a
+            >
+            <div class="footer-partners">
+              <a
+                href="https://www.instagram.com/cords.cedar/"
+                target="_blank"
+                class="partner-link"
+              >
+                <img
+                  src="public/Logos/Society Logos/CoRDS Logo White .png"
+                  alt="CORDS"
+                  class="partner-logo"
+                />
+              </a>
+              <a
+                href="https://cedar-codes.vercel.app/"
+                target="_blank"
+                class="partner-link"
+              >
+                <img
+                  src="public/Logos/Society Logos/Codes Logo.png"
+                  alt="CODES"
+                  class="partner-logo"
+                />
+              </a>
+              <a
+                href="https://crew.cedar.edu.pk/"
+                target="_blank"
+                class="partner-link"
+              >
+                <img
+                  src="public/Logos/Society Logos/Crew Logo.png"
+                  alt="CREW"
+                  class="partner-logo enlarged"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/juno.cedar/"
+                target="_blank"
+                class="partner-link"
+              >
+                <img
+                  src="public/Logos/Society Logos/The Juno Circle Logo White.png"
+                  alt="Juno Circle"
+                  class="partner-logo"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/cedarmindsports/"
+                target="_blank"
+                class="partner-link"
+              >
+                <img
+                  src="public/Logos/Society Logos/mindsports.png"
+                  alt="Mindsports"
+                  class="partner-logo"
+                />
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
-
-    <!-- NAVIGATION (Moved to bottom for Stacking Context) -->
     <nav class="magick-nav">
-        <div class="logo">
-            <img src="public/Logos/Scinnova Logos/Scinnova VIII Logo Horizontal.png" alt="ScinNova" class="nav-logo" />
-        </div>
-
-        <!-- Desktop Navigation -->
-        <div class="nav-links desktop-only">
-            <a href="#about" class="nav-link">ABOUT</a>
-            <a href="#modules" class="nav-link">MODULES</a>
-            <a href="#chronicles" class="nav-link">CHRONICLES</a>
-            <a href="#gallery" class="nav-link">GALLERY</a>
-            <a href="#oracle" class="nav-link">ORACLE</a>
-            <a href="#council" class="nav-link">COUNCIL</a>
-        </div>
-
-        <div class="nav-controls">
-            <a href="https://forms.gle/3d5ZJ53XSoavK8ra7" target="_blank"
-                class="nav-register-btn desktop-only">REGISTER</a>
-            <button class="mobile-menu-toggle mobile-only" aria-label="Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
+      <div class="logo">
+        <img
+          src="public/Logos/Scinnova Logos/Scinnova VIII Logo Horizontal.png"
+          alt="ScinNova"
+          class="nav-logo"
+        />
+      </div>
+      <div class="nav-links desktop-only">
+        <a href="#about" class="nav-link">ABOUT</a>
+        <a href="#modules" class="nav-link">MODULES</a>
+        <a href="#chronicles" class="nav-link">CHRONICLES</a>
+        <a href="#gallery" class="nav-link">GALLERY</a>
+        <a href="#oracle" class="nav-link">ORACLE</a>
+        <a href="#council" class="nav-link">COUNCIL</a>
+      </div>
+      <div class="nav-controls">
+        <a
+          href="https://forms.gle/3d5ZJ53XSoavK8ra7"
+          target="_blank"
+          class="nav-register-btn desktop-only"
+          >REGISTER</a
+        >
+        <button class="mobile-menu-toggle mobile-only" aria-label="Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay">
-        <button class="mobile-menu-close" aria-label="Close Menu">×</button>
-        <div class="mobile-nav-links">
-            <a href="#about" class="mobile-nav-link">ABOUT</a>
-            <a href="#modules" class="mobile-nav-link">MODULES</a>
-            <a href="#chronicles" class="mobile-nav-link">CHRONICLES</a>
-            <a href="#gallery" class="mobile-nav-link">GALLERY</a>
-            <a href="#oracle" class="mobile-nav-link">ORACLE</a>
-            <a href="#council" class="mobile-nav-link">COUNCIL</a>
-        </div>
+      <button class="mobile-menu-close" aria-label="Close Menu">×</button>
+      <div class="mobile-nav-links">
+        <a href="#about" class="mobile-nav-link">ABOUT</a>
+        <a href="#modules" class="mobile-nav-link">MODULES</a>
+        <a href="#chronicles" class="mobile-nav-link">CHRONICLES</a>
+        <a href="#gallery" class="mobile-nav-link">GALLERY</a>
+        <a href="#oracle" class="mobile-nav-link">ORACLE</a>
+        <a href="#council" class="mobile-nav-link">COUNCIL</a>
+      </div>
     </div>
-
-    <!-- Scripts -->
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>
