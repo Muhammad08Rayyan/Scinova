@@ -1,3 +1,4 @@
+/* --- CURSOR EFFECTS --- */
 const cursorDot = document.querySelector(".cursor-dot");
 const cursorOutline = document.querySelector(".cursor-outline");
 window.addEventListener("mousemove", function (e) {
@@ -30,6 +31,7 @@ hoverables.forEach((el) => {
     cursorOutline.style.backgroundColor = "transparent";
   });
 });
+/* --- SMOOTH SCROLLING (LENIS) --- */
 window.lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -45,6 +47,7 @@ gsap.ticker.add((time) => {
   window.lenis.raf(time * 1000);
 });
 gsap.ticker.lagSmoothing(0);
+/* --- INITIALIZATION --- */
 window.addEventListener("load", () => {
   initLoader();
   tryAutoPlay();
@@ -56,6 +59,7 @@ window.addEventListener("load", () => {
   initGallery();
   initMobileMenu();
 });
+/* --- LOADER ANIMATION --- */
 function initLoader() {
   const tl = gsap.timeline();
   tl.from(".loader-text", {
@@ -82,6 +86,7 @@ function initLoader() {
       ease: "power2.inOut",
     });
 }
+/* --- HERO ANIMATIONS --- */
 function initHero() {
   const tl = gsap.timeline({ delay: 0.5 });
   tl.from(".fire-timer", {
@@ -111,6 +116,7 @@ function initHero() {
       "-=1"
     );
 }
+/* --- SCROLL ANIMATIONS (Parallax & Reveal) --- */
 function initScroll() {
   if (window.innerWidth > 768) {
     gsap.fromTo(
@@ -181,6 +187,7 @@ function initStackingCards() {
     });
   });
 }
+/* --- MAGNETIC BUTTON EFFECT --- */
 function initMagneticButtons() {
   const magnets = document.querySelectorAll(".magnetic-btn");
   magnets.forEach((magnet) => {
@@ -208,6 +215,7 @@ function initMagneticButtons() {
     });
   });
 }
+/* --- FAQ INTERACTION --- */
 function initFAQ() {
   const items = document.querySelectorAll(".faq-item");
   items.forEach((item) => {
@@ -226,6 +234,7 @@ function initFAQ() {
     });
   });
 }
+/* --- COUNTDOWN TIMER & FIREWORKS --- */
 function initCountdown() {
   const targetDate = new Date("2026-01-09T08:00:00+05:00").getTime();
   let fireworksTriggered = false;
@@ -426,6 +435,7 @@ function startFireworks() {
   }
   loop();
 }
+/* --- GALLERY ANIMATIONS --- */
 function initGallery() {
   if (window.innerWidth < 768) return;
   const columns = document.querySelectorAll(".gallery-col");
@@ -466,6 +476,7 @@ function initGallery() {
     },
   });
 }
+/* --- MOBILE MENU --- */
 function initMobileMenu() {
   const toggle = document.querySelector(".mobile-menu-toggle");
   const closeBtn = document.querySelector(".mobile-menu-close");
@@ -500,6 +511,7 @@ function initMobileMenu() {
     });
   });
 }
+/* --- AUDIO HANDLING --- */
 const audio = {
   tick: new Audio("public/Audio/clock-tick.mp3"),
   flip: new Audio("public/Audio/paper-flip.mp3"),

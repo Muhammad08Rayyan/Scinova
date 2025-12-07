@@ -1,3 +1,4 @@
+/* --- IMPORTS & VARIABLES --- */
 @import url("https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap");
 :root {
   --void-black: #0b0907;
@@ -16,6 +17,7 @@
   --space-lg: clamp(4rem, 8vw, 8rem);
   --space-xl: clamp(6rem, 12vw, 12rem);
 }
+/* --- GLOBAL RESETS & BASICS --- */
 *,
 *::before,
 *::after {
@@ -61,6 +63,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--ancient-gold);
 }
+/* --- NOISE OVERLAY --- */
 .noise-overlay {
   position: fixed;
   top: 0;
@@ -72,6 +75,7 @@ body {
   opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
+/* --- GALLERY SECTION --- */
 .gallery-section {
   position: relative;
   z-index: 1;
@@ -79,6 +83,7 @@ body {
   overflow: hidden;
   padding-bottom: 4rem;
 }
+/* --- LOADER STYLES --- */
 .loader {
   position: fixed;
   inset: 0;
@@ -105,6 +110,7 @@ body {
   font-size: 1rem;
   letter-spacing: 0.3em;
 }
+/* --- HERO SECTION --- */
 .fire-timer-wrapper {
   display: flex;
   flex-direction: column;
@@ -171,6 +177,7 @@ body {
 .partner-logo.enlarged {
   height: 80px;
 }
+/* --- NAVIGATION --- */
 .magick-nav {
   position: fixed;
   top: 0;
@@ -342,6 +349,7 @@ body {
 .desktop-only {
   display: flex;
 }
+/* --- TYPOGRAPHY & UTILITIES --- */
 h1,
 h2,
 h3,
@@ -476,6 +484,7 @@ h4 {
 .editorial-text {
   padding-top: var(--space-lg);
 }
+/* --- EDITORIAL / ABOUT SECTION --- */
 .editorial-image {
   position: relative;
   width: 100%;
@@ -513,6 +522,7 @@ h4 {
   font-size: 0.8rem;
   letter-spacing: 0.2em;
 }
+/* --- MODULES (Horizontal Scroll) --- */
 .horizontal-scroll-section {
   width: 100%;
   height: 100vh;
@@ -626,8 +636,7 @@ h4 {
 .icon-freud {
   object-fit: contain;
 }
-.icon-automaton {
-}
+
 .module-body {
   display: flex;
   flex-direction: column;
@@ -665,6 +674,7 @@ h4 {
   opacity: 0;
   pointer-events: none;
 }
+/* --- TESTIMONIALS / CHRONICLES --- */
 .testimonials-section {
   padding: clamp(6rem, 12vw, 10rem) 0;
   background: var(--void-black);
@@ -865,6 +875,7 @@ h4 {
 .gallery-item:hover img {
   filter: sepia(0%) contrast(1);
 }
+/* --- FAQ / ORACLE SECTION --- */
 .faq-wrapper {
   max-width: 800px;
   margin: var(--space-lg) auto;
@@ -941,6 +952,7 @@ h4 {
   font-style: italic;
   color: var(--parchment-dim);
 }
+/* --- FOOTER --- */
 .main-footer {
   padding: var(--space-xl) 0;
   background: var(--shadow-dark);
