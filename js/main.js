@@ -118,7 +118,7 @@ function initHero() {
 }
 /* --- SCROLL ANIMATIONS (Parallax & Reveal) --- */
 function initScroll() {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 1024) {
     gsap.fromTo(
       ".parallax-img",
       {
@@ -485,6 +485,7 @@ function initMobileMenu() {
   function toggleMenu() {
     if (!overlay) return;
     overlay.classList.toggle("active");
+    if (toggle) toggle.classList.toggle("hidden");
     document.body.style.overflow = overlay.classList.contains("active")
       ? "hidden"
       : "";
