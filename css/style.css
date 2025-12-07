@@ -117,6 +117,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 2;
+  margin-top: -3vh;
 }
 .fire-timer {
   display: flex;
@@ -494,6 +495,23 @@ h4 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0;
+}
+.hero-clock-img {
+  max-width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  margin-top: 2vh;
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
 }
 .hero-meta {
   position: absolute;
@@ -571,16 +589,61 @@ h4 {
   align-items: center;
   background: var(--shadow-dark);
   overflow: hidden;
+  position: relative; /* Context for absolute buttons */
 }
 .horizontal-scroll-wrapper {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   display: flex;
+  display: flex;
   align-items: center;
-  padding: 0 var(--space-md) 2.5rem;
+  padding: 0 10vw 2.5rem;
   scrollbar-width: thin;
   scrollbar-color: var(--muted-gold) var(--void-black);
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+/* Navigation Buttons */
+.module-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(11, 9, 7, 0.8);
+  border: 1px solid var(--ancient-gold);
+  border-radius: 50%;
+  color: var(--ancient-gold);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  user-select: none;
+}
+.module-nav-btn:hover {
+  background: var(--ancient-gold);
+  color: var(--void-black);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+.prev-btn {
+  left: 2rem;
+}
+.next-btn {
+  right: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .module-nav-btn {
+    display: none;
+  } /* Hide on mobile/tablet */
+}
+@media (min-width: 1025px) {
+  .horizontal-scroll-wrapper {
+    overflow-x: hidden; /* Hide scrollbar on desktop for custom nav */
+  }
 }
 .horizontal-scroll-wrapper::-webkit-scrollbar {
   height: 8px;
@@ -594,9 +657,9 @@ h4 {
 }
 .hs-content {
   display: flex;
-  gap: var(--space-lg);
+  gap: 10vw;
   height: 70vh;
-  padding-right: var(--space-md);
+  padding-right: 10vw;
   width: max-content;
 }
 .module-card {

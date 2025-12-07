@@ -9,7 +9,6 @@
       content="Cedar College's International Inter-School Science Olympiad"
     />
     <meta name="keywords" content="Scinova, Scinova 9, Scinova IX" />
-    <meta name="author" content="Muhammad Rayyan Kashif" />
     <title>ScinNova IX</title>
     <link rel="icon" type="image/x-icon" href="public/Icon.ico" />
     <link rel="stylesheet" href="css/style.css" />
@@ -41,10 +40,11 @@
           <canvas id="fireworks-canvas"></canvas>
           <div class="hero-bg"></div>
           <div class="container hero-container">
+            <!-- Mobile logo removed -->
             <img
-              src="public/Logos/Scinnova Logos/IX.png"
-              class="mobile-hero-logo mobile-only"
-              alt="ScinNova Logo"
+              src="public/Pictures/Background.jpg"
+              class="hero-clock-img"
+              alt="Clock"
             />
             <div class="fire-timer-wrapper">
               <div class="fire-timer">
@@ -75,12 +75,7 @@
                 >REGISTER NOW</a
               >
             </div>
-            <div class="hero-meta">
-              <div class="scroll-indicator">
-                <span>SCROLL TO ENTER</span>
-                <div class="line"></div>
-              </div>
-            </div>
+            <!-- Scroll indicator removed -->
           </div>
         </header>
 
@@ -125,6 +120,30 @@
 
         <!-- MODULES SECTION (Horizontal Scroll) -->
         <section class="horizontal-scroll-section" id="modules">
+          <button class="module-nav-btn prev-btn" aria-label="Previous Module">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button class="module-nav-btn next-btn" aria-label="Next Module">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
           <div class="horizontal-scroll-wrapper">
             <div class="hs-content">
               <div class="hs-item module-card">
@@ -651,24 +670,13 @@
             >
             <div class="footer-partners">
               <a
-                href="https://www.instagram.com/cords.cedar/"
+                href="https://www.instagram.com/cedarmindsports/"
                 target="_blank"
                 class="partner-link"
               >
                 <img
-                  src="public/Logos/Society Logos/CoRDS Logo White .png"
-                  alt="CORDS"
-                  class="partner-logo"
-                />
-              </a>
-              <a
-                href="https://cedar-codes.vercel.app/"
-                target="_blank"
-                class="partner-link"
-              >
-                <img
-                  src="public/Logos/Society Logos/Codes Logo.png"
-                  alt="CODES"
+                  src="public/Logos/Society Logos/mindsports.png"
+                  alt="Mindsports"
                   class="partner-logo"
                 />
               </a>
@@ -684,6 +692,17 @@
                 />
               </a>
               <a
+                href="https://www.instagram.com/cords.cedar/"
+                target="_blank"
+                class="partner-link"
+              >
+                <img
+                  src="public/Logos/Society Logos/CoRDS Logo White .png"
+                  alt="CORDS"
+                  class="partner-logo"
+                />
+              </a>
+              <a
                 href="https://www.instagram.com/juno.cedar/"
                 target="_blank"
                 class="partner-link"
@@ -695,13 +714,13 @@
                 />
               </a>
               <a
-                href="https://www.instagram.com/cedarmindsports/"
+                href="https://cedar-codes.vercel.app/"
                 target="_blank"
                 class="partner-link"
               >
                 <img
-                  src="public/Logos/Society Logos/mindsports.png"
-                  alt="Mindsports"
+                  src="public/Logos/Society Logos/Codes Logo.png"
+                  alt="CODES"
                   class="partner-logo"
                 />
               </a>

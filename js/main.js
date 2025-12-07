@@ -57,6 +57,7 @@ window.addEventListener("load", () => {
   initCountdown();
   initMagneticButtons();
   initGallery();
+  initModulesSlider();
   initMobileMenu();
 });
 /* --- LOADER ANIMATION --- */
@@ -95,26 +96,16 @@ function initHero() {
     filter: "blur(10px)",
     duration: 2,
     ease: "power4.out",
-  })
-    .from(
-      ".hero-title-small",
-      {
-        opacity: 0,
-        letterSpacing: "1em",
-        duration: 1.5,
-        ease: "power2.out",
-      },
-      "-=1.5"
-    )
-    .from(
-      ".hero-meta",
-      {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-      },
-      "-=1"
-    );
+  }).from(
+    ".hero-title-small",
+    {
+      opacity: 0,
+      letterSpacing: "1em",
+      duration: 1.5,
+      ease: "power2.out",
+    },
+    "-=1.5"
+  );
 }
 /* --- SCROLL ANIMATIONS (Parallax & Reveal) --- */
 function initScroll() {
@@ -476,6 +467,36 @@ function initGallery() {
     },
   });
 }
+/* --- MODULE SLIDER (Desktop) --- */
+function initModulesSlider() {
+  const container = document.querySelector(".horizontal-scroll-wrapper");
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+
+  if (!container || !prevBtn || !nextBtn) return;
+
+  nextBtn.addEventListener("click", () => {
+    const card = container.querySelector(".module-card");
+    const gap = parseFloat(
+      getComputedStyle(container.querySelector(".hs-content")).gap || 0
+    ); // Get actual gap
+    const scrollAmount = card.offsetWidth + gap; // Scroll by one card + gap
+
+    // Smooth scroll
+    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    const card = container.querySelector(".module-card");
+    const gap = parseFloat(
+      getComputedStyle(container.querySelector(".hs-content")).gap || 0
+    );
+    const scrollAmount = card.offsetWidth + gap;
+
+    container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+}
+
 /* --- MOBILE MENU --- */
 function initMobileMenu() {
   const toggle = document.querySelector(".mobile-menu-toggle");
