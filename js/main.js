@@ -52,12 +52,12 @@ window.addEventListener("load", () => {
   initLoader();
   tryAutoPlay();
   initHero();
+  initModulesScroll(); // Initialize pinning first so downstream triggers adjust
   initScroll();
   initFAQ();
   initCountdown();
   initMagneticButtons();
   initGallery();
-  initModulesSlider();
   initMobileMenu();
 });
 /* --- LOADER ANIMATION --- */
@@ -258,7 +258,12 @@ function initCountdown() {
     const newSeconds = seconds < 10 ? "0" + seconds : seconds;
     if (prevSeconds !== newSeconds) {
       document.getElementById("seconds").innerText = newSeconds;
-      if (audio.enabled && !fireworksTriggered && isHeroVisible()) {
+      if (
+        audio.enabled &&
+        !fireworksTriggered &&
+        isHeroVisible() &&
+        !document.hidden
+      ) {
         audio.tick.currentTime = 0;
         audio.tick.volume = 0.5;
         audio.tick.play().catch(() => {});
@@ -467,34 +472,36 @@ function initGallery() {
     },
   });
 }
-/* --- MODULE SLIDER (Desktop) --- */
-function initModulesSlider() {
-  const container = document.querySelector(".horizontal-scroll-wrapper");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
 
-  if (!container || !prevBtn || !nextBtn) return;
+/* --- MODULES SLIDER & SCROLL --- */
+function initModulesScroll() {
+  const section = document.querySelector(".horizontal-scroll-section");
+  const wrapper = document.querySelector(".horizontal-scroll-wrapper");
+  const content = document.querySelector(".hs-content");
+  if (!section || !wrapper || !content) return;
 
-  nextBtn.addEventListener("click", () => {
-    const card = container.querySelector(".module-card");
-    const gap = parseFloat(
-      getComputedStyle(container.querySelector(".hs-content")).gap || 0
-    ); // Get actual gap
-    const scrollAmount = card.offsetWidth + gap; // Scroll by one card + gap
+  if (window.innerWidth > 1024) {
+    // Hide native scrollbar on desktop
+    wrapper.style.overflowX = "hidden";
 
-    // Smooth scroll
-    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  });
+    const getScrollAmount = () => {
+      let contentWidth = content.scrollWidth;
+      return -(contentWidth - window.innerWidth);
+    };
 
-  prevBtn.addEventListener("click", () => {
-    const card = container.querySelector(".module-card");
-    const gap = parseFloat(
-      getComputedStyle(container.querySelector(".hs-content")).gap || 0
-    );
-    const scrollAmount = card.offsetWidth + gap;
-
-    container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  });
+    const tween = gsap.to(content, {
+      x: getScrollAmount,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => `+=${Math.abs(getScrollAmount())}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+  }
 }
 
 /* --- MOBILE MENU --- */

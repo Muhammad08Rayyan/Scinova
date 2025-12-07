@@ -40,7 +40,6 @@
           <canvas id="fireworks-canvas"></canvas>
           <div class="hero-bg"></div>
           <div class="container hero-container">
-            <!-- Mobile logo removed -->
             <img
               src="public/Pictures/Background.jpg"
               class="hero-clock-img"
@@ -75,7 +74,6 @@
                 >REGISTER NOW</a
               >
             </div>
-            <!-- Scroll indicator removed -->
           </div>
         </header>
 
@@ -120,32 +118,14 @@
 
         <!-- MODULES SECTION (Horizontal Scroll) -->
         <section class="horizontal-scroll-section" id="modules">
-          <button class="module-nav-btn prev-btn" aria-label="Previous Module">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button class="module-nav-btn next-btn" aria-label="Next Module">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
           <div class="horizontal-scroll-wrapper">
             <div class="hs-content">
+              <div class="hs-item module-title-card">
+                <div class="vertical-title">
+                  <span class="outline-text">THE</span>
+                  <span class="gold-text">MODULES</span>
+                </div>
+              </div>
               <div class="hs-item module-card">
                 <div class="card-inner">
                   <div class="module-header">
@@ -385,8 +365,20 @@
                   </div>
                 </div>
               </div>
+
+              <div class="hs-item module-spacer-card"></div>
+
+              <div class="hs-item module-spacer-card"></div>
             </div>
           </div>
+
+          <a
+            href="#chronicles"
+            class="module-next-btn"
+            aria-label="Next Section"
+          >
+            <span class="arrow-down">↓</span>
+          </a>
         </section>
 
         <!-- THE CHRONICLES (Testimonials) -->
@@ -657,8 +649,8 @@
         <footer class="main-footer">
           <div class="footer-content">
             <img
-              src="public/Logos/Scinnova Logos/Scinnova Gear.png"
-              alt="ScinNova Gear"
+              src="public/Logos/Scinnova Logos/Icon.png"
+              alt="ScinNova Logo"
               class="footer-gear"
             />
             <h3 class="footer-cta">AWAITING YOUR ARRIVAL</h3>
