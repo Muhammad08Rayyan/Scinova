@@ -1423,11 +1423,11 @@ h4 {
 
 @media (max-width: 600px) {
   .hero-clock-img {
-    max-height: 70vh;
-    margin-top: 2vh;
+    max-height: 80vh;
+    margin-top: 4vh;
     transform: scale(1.25) translateY(-5%);
   }
   .fire-timer-wrapper {
-    margin-top: 10vh;
+    margin-top: 2vh;
   }
 }
