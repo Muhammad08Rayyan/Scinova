@@ -17,7 +17,7 @@ window.addEventListener("mousemove", function (e) {
   }
 });
 const hoverables = document.querySelectorAll(
-  "a:not(.magick-nav a), button, .magnetic-btn, .faq-question, .module-card"
+  "a:not(.magick-nav a), button, .magnetic-btn, .module-card"
 );
 hoverables.forEach((el) => {
   el.addEventListener("mouseenter", () => {
@@ -41,12 +41,17 @@ window.lenis = new Lenis({
   mouseMultiplier: 1,
   smoothTouch: false,
   touchMultiplier: 2,
+  infinite: false,
+  syncTouch: true,
 });
 window.lenis.on("scroll", ScrollTrigger.update);
 gsap.ticker.add((time) => {
   window.lenis.raf(time * 1000);
 });
 gsap.ticker.lagSmoothing(0);
+
+// Refresh ScrollTrigger after Lenis initialization
+ScrollTrigger.refresh();
 /* --- INITIALIZATION --- */
 window.addEventListener("load", () => {
   initLoader();
@@ -213,6 +218,12 @@ function initFAQ() {
     const question = item.querySelector(".faq-question");
     question.addEventListener("click", () => {
       const isActive = item.classList.contains("active");
+
+      // Stop Lenis during FAQ animation to prevent jitter
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+
       items.forEach((i) => {
         i.classList.remove("active");
         i.querySelector(".faq-answer").style.maxHeight = null;
@@ -222,6 +233,16 @@ function initFAQ() {
         const answer = item.querySelector(".faq-answer");
         answer.style.maxHeight = answer.scrollHeight + "px";
       }
+
+      // Refresh ScrollTrigger and restart Lenis after animation completes
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+        if (window.lenis) {
+          window.lenis.start();
+        }
+      }, 500);
     });
   });
 }
