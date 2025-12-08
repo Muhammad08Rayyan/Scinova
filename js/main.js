@@ -17,7 +17,7 @@ window.addEventListener("mousemove", function (e) {
   }
 });
 const hoverables = document.querySelectorAll(
-  "a:not(.magick-nav a), button, .magnetic-btn, .module-card"
+  "a:not(.magick-nav a):not(.cta-btn):not(.partner-link), button, .magnetic-btn, .module-card"
 );
 hoverables.forEach((el) => {
   el.addEventListener("mouseenter", () => {
