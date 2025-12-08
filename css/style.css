@@ -1,4 +1,3 @@
-/* --- IMPORTS & VARIABLES --- */
 @import url("https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap");
 :root {
     --void-black: #0b0907;
@@ -17,7 +16,7 @@
     --space-lg: clamp(4rem, 8vw, 8rem);
     --space-xl: clamp(6rem, 12vw, 12rem);
 }
-/* --- GLOBAL RESETS & BASICS --- */
+
 *,
 *::before,
 *::after {
@@ -63,7 +62,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--ancient-gold);
 }
-/* --- NOISE OVERLAY --- */
+
 .noise-overlay {
     position: fixed;
     top: 0;
@@ -75,7 +74,7 @@ body {
     opacity: 0.05;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
-/* --- GALLERY SECTION --- */
+
 .gallery-section {
     position: relative;
     z-index: 1;
@@ -83,7 +82,7 @@ body {
     overflow: hidden;
     padding-bottom: 4rem;
 }
-/* --- LOADER STYLES --- */
+
 .loader {
     position: fixed;
     inset: 0;
@@ -110,7 +109,7 @@ body {
     font-size: 1rem;
     letter-spacing: 0.3em;
 }
-/* --- HERO SECTION --- */
+
 .fire-timer-wrapper {
     position: absolute;
     top: 50%;
@@ -185,10 +184,26 @@ body {
     filter: grayscale(0%) opacity(1);
     transform: scale(1.1);
 }
-.partner-logo.enlarged {
-    height: 80px;
+
+.footer-partners .partner-link:nth-child(1) .partner-logo {
+    height: 72px;
 }
-/* --- NAVIGATION --- */
+
+.footer-partners .partner-link:nth-child(2) .partner-logo {
+    height: 72px;
+}
+
+.footer-partners .partner-link:nth-child(3) .partner-logo {
+    height: 45px;
+}
+
+.footer-partners .partner-link:nth-child(4) .partner-logo {
+    height: 72px;
+}
+.partner-logo.enlarged {
+    height: 72px;
+}
+
 .magick-nav {
     position: fixed;
     top: 0;
@@ -408,7 +423,7 @@ body {
 .desktop-only {
     display: flex;
 }
-/* --- TYPOGRAPHY & UTILITIES --- */
+
 h1,
 h2,
 h3,
@@ -565,11 +580,27 @@ h4 {
     .organizer-card:nth-child(2) {
         order: -1;
     }
+
+    .council-hierarchy {
+        gap: var(--space-sm);
+    }
+
+    .council-row {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+    }
+
+    .council-row-1,
+    .council-row-2,
+    .council-row-3 {
+        max-width: 100%;
+    }
 }
 .editorial-text {
     padding-top: var(--space-lg);
 }
-/* --- EDITORIAL / ABOUT SECTION --- */
+
 .editorial-image {
     position: relative;
     width: 100%;
@@ -607,7 +638,7 @@ h4 {
     font-size: 0.8rem;
     letter-spacing: 0.2em;
 }
-/* --- MODULES --- */
+
 .horizontal-scroll-section {
     width: 100%;
     height: 100vh;
@@ -641,6 +672,7 @@ h4 {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    margin-left: 4vw;
 }
 .vertical-title {
     flex-direction: column;
@@ -659,8 +691,8 @@ h4 {
 }
 
 .module-spacer-card {
-    width: 30vw;
-    min-width: 300px;
+    width: 15vw;
+    min-width: 150px;
     height: 70vh;
     flex-shrink: 0;
 }
@@ -698,7 +730,7 @@ h4 {
 @media (max-width: 1024px) {
     .module-nav-btn {
         display: none;
-    } /* Hide on mobile/tablet */
+    }
 }
 @media (min-width: 1025px) {
     .horizontal-scroll-wrapper {
@@ -845,7 +877,6 @@ h4 {
     pointer-events: none;
 }
 
-/* --- GALLERY GRID --- */
 .gallery-wrapper {
     display: flex;
     justify-content: center;
@@ -888,7 +919,6 @@ h4 {
     transform: scale(1.1);
 }
 
-/* --- TESTIMONIALS / CHRONICLES --- */
 .testimonials-section {
     padding: clamp(6rem, 12vw, 10rem) 0;
     background: var(--void-black);
@@ -1089,7 +1119,7 @@ h4 {
 .gallery-item:hover img {
     filter: sepia(0%) contrast(1);
 }
-/* --- FAQ / ORACLE SECTION --- */
+
 .faq-section {
     position: relative;
     isolation: isolate;
@@ -1140,6 +1170,58 @@ h4 {
     margin-top: var(--space-lg);
     text-align: center;
 }
+
+.council-hierarchy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.council-row {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    width: 100%;
+}
+
+.council-row-1 {
+    max-width: 350px;
+    position: relative;
+    z-index: 2;
+}
+
+@media (min-width: 769px) {
+    .council-row-1 {
+        transform: translateY(6rem);
+    }
+}
+
+@media (min-width: 769px) {
+    .council-row-2 {
+        gap: clamp(20rem, 40vw, 50rem);
+        max-width: 100%;
+    }
+}
+
+.council-row-2 {
+    max-width: 1400px;
+    position: relative;
+    z-index: 1;
+}
+
+.council-row-3 {
+    max-width: 350px;
+    position: relative;
+    z-index: 2;
+}
+
+@media (min-width: 769px) {
+    .council-row-3 {
+        transform: translateY(-6rem);
+    }
+}
 .organizer-card {
     display: flex;
     flex-direction: column;
@@ -1163,6 +1245,7 @@ h4 {
 .org-name {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 .org-role {
     font-family: var(--font-tech);
@@ -1175,7 +1258,12 @@ h4 {
     font-style: italic;
     color: var(--parchment-dim);
 }
-/* --- FOOTER --- */
+.footer-cedar-logo {
+    height: 68px;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
 .main-footer {
     padding: var(--space-md) 0;
     background: var(--shadow-dark);
@@ -1354,6 +1442,23 @@ h4 {
         width: 60px !important;
         height: 60px !important;
     }
+
+    .module-number {
+        display: none;
+    }
+
+    .module-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .module-header-text {
+        align-items: flex-start;
+        text-align: left;
+        padding: 0;
+        flex: 1;
+    }
     .spacer-card {
         display: none;
     }
@@ -1416,14 +1521,21 @@ h4 {
         gap: 1.5rem;
     }
     .partner-logo {
-        height: 40px;
+        height: 50px;
+    }
+    .partner-logo.enlarged,
+    .footer-cedar-logo {
+        height: 50px;
+    }
+
+    .footer-partners .partner-link:nth-child(n) .partner-logo {
+        height: 50px;
     }
     .mobile-menu-toggle {
         display: flex;
     }
 }
 
-/* --- MOBILE OVERRIDES --- */
 @media (max-width: 768px) {
     .horizontal-scroll-section {
         height: auto !important;

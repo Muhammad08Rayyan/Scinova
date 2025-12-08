@@ -1,4 +1,3 @@
-/* --- CURSOR EFFECTS --- */
 const cursorDot = document.querySelector(".cursor-dot");
 const cursorOutline = document.querySelector(".cursor-outline");
 window.addEventListener("mousemove", function (e) {
@@ -12,12 +11,12 @@ window.addEventListener("mousemove", function (e) {
         left: `${posX}px`,
         top: `${posY}px`,
       },
-      { duration: 500, fill: "forwards" }
+      { duration: 500, fill: "forwards" },
     );
   }
 });
 const hoverables = document.querySelectorAll(
-  "a:not(.magick-nav a):not(.cta-btn):not(.partner-link), button, .magnetic-btn, .module-card"
+  "a:not(.magick-nav a):not(.cta-btn):not(.partner-link), button, .magnetic-btn, .module-card",
 );
 hoverables.forEach((el) => {
   el.addEventListener("mouseenter", () => {
@@ -31,7 +30,6 @@ hoverables.forEach((el) => {
     cursorOutline.style.backgroundColor = "transparent";
   });
 });
-/* --- SMOOTH SCROLLING (LENIS) --- */
 window.lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -50,9 +48,7 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0);
 
-// Refresh ScrollTrigger after Lenis initialization
 ScrollTrigger.refresh();
-/* --- INITIALIZATION --- */
 window.addEventListener("load", () => {
   initLoader();
   tryAutoPlay();
@@ -65,7 +61,6 @@ window.addEventListener("load", () => {
   initGallery();
   initMobileMenu();
 });
-/* --- LOADER ANIMATION --- */
 function initLoader() {
   const tl = gsap.timeline();
   tl.from(".loader-text", {
@@ -82,7 +77,7 @@ function initLoader() {
         duration: 1,
         ease: "power2.out",
       },
-      "-=0.5"
+      "-=0.5",
     )
     .to(".loader", {
       opacity: 0,
@@ -92,7 +87,6 @@ function initLoader() {
       ease: "power2.inOut",
     });
 }
-/* --- HERO ANIMATIONS --- */
 function initHero() {
   const tl = gsap.timeline({ delay: 0.5 });
   tl.from(".fire-timer", {
@@ -109,10 +103,9 @@ function initHero() {
       duration: 1.5,
       ease: "power2.out",
     },
-    "-=1.5"
+    "-=1.5",
   );
 }
-/* --- SCROLL ANIMATIONS (Parallax & Reveal) --- */
 function initScroll() {
   if (window.innerWidth > 1024) {
     gsap.fromTo(
@@ -129,7 +122,7 @@ function initScroll() {
           end: "bottom top",
           scrub: 0.5,
         },
-      }
+      },
     );
   }
   gsap.to(".image-frame", {
@@ -183,7 +176,6 @@ function initStackingCards() {
     });
   });
 }
-/* --- MAGNETIC BUTTON EFFECT --- */
 function initMagneticButtons() {
   const magnets = document.querySelectorAll(".magnetic-btn");
   magnets.forEach((magnet) => {
@@ -211,7 +203,6 @@ function initMagneticButtons() {
     });
   });
 }
-/* --- FAQ INTERACTION --- */
 function initFAQ() {
   const items = document.querySelectorAll(".faq-item");
   items.forEach((item) => {
@@ -219,7 +210,6 @@ function initFAQ() {
     question.addEventListener("click", () => {
       const isActive = item.classList.contains("active");
 
-      // Stop Lenis during FAQ animation to prevent jitter
       if (window.lenis) {
         window.lenis.stop();
       }
@@ -234,9 +224,8 @@ function initFAQ() {
         answer.style.maxHeight = answer.scrollHeight + "px";
       }
 
-      // Refresh ScrollTrigger and restart Lenis after animation completes
       setTimeout(() => {
-        if (typeof ScrollTrigger !== 'undefined') {
+        if (typeof ScrollTrigger !== "undefined") {
           ScrollTrigger.refresh();
         }
         if (window.lenis) {
@@ -246,7 +235,6 @@ function initFAQ() {
     });
   });
 }
-/* --- COUNTDOWN TIMER & FIREWORKS --- */
 function initCountdown() {
   const targetDate = new Date("2026-01-09T08:00:00+05:00").getTime();
   let fireworksTriggered = false;
@@ -266,7 +254,7 @@ function initCountdown() {
     }
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -321,7 +309,7 @@ function startFireworks() {
       this.tx = tx;
       this.ty = ty;
       this.distanceToTarget = Math.sqrt(
-        Math.pow(tx - sx, 2) + Math.pow(ty - sy, 2)
+        Math.pow(tx - sx, 2) + Math.pow(ty - sy, 2),
       );
       this.distanceTraveled = 0;
       this.coordinates = [];
@@ -347,7 +335,7 @@ function startFireworks() {
       const vx = Math.cos(this.angle) * this.speed;
       const vy = Math.sin(this.angle) * this.speed;
       this.distanceTraveled = Math.sqrt(
-        Math.pow(this.sx - this.x, 2) + Math.pow(this.sy - this.y, 2)
+        Math.pow(this.sx - this.x, 2) + Math.pow(this.sy - this.y, 2),
       );
       if (this.distanceTraveled >= this.distanceToTarget) {
         createParticles(this.tx, this.ty);
@@ -361,7 +349,7 @@ function startFireworks() {
       ctx.beginPath();
       ctx.moveTo(
         this.coordinates[this.coordinates.length - 1][0],
-        this.coordinates[this.coordinates.length - 1][1]
+        this.coordinates[this.coordinates.length - 1][1],
       );
       ctx.lineTo(this.x, this.y);
       ctx.strokeStyle =
@@ -402,7 +390,7 @@ function startFireworks() {
       ctx.beginPath();
       ctx.moveTo(
         this.coordinates[this.coordinates.length - 1][0],
-        this.coordinates[this.coordinates.length - 1][1]
+        this.coordinates[this.coordinates.length - 1][1],
       );
       ctx.lineTo(this.x, this.y);
       ctx.strokeStyle =
@@ -440,7 +428,12 @@ function startFireworks() {
     }
     if (Math.random() < 0.05) {
       fireworks.push(
-        new Firework(width / 2, height, random(0, width), random(0, height / 2))
+        new Firework(
+          width / 2,
+          height,
+          random(0, width),
+          random(0, height / 2),
+        ),
       );
       if (audio.enabled && isHeroVisible()) {
         const fwSound = audio.fireworks.cloneNode();
@@ -452,7 +445,6 @@ function startFireworks() {
   }
   loop();
 }
-/* --- GALLERY ANIMATIONS --- */
 function initGallery() {
   if (window.innerWidth < 768) return;
   const columns = document.querySelectorAll(".gallery-col");
@@ -480,7 +472,7 @@ function initGallery() {
         end: "bottom top",
         scrub: 1,
       },
-    }
+    },
   );
   gsap.to(columns[2], {
     yPercent: -15,
@@ -494,7 +486,6 @@ function initGallery() {
   });
 }
 
-/* --- MODULES SLIDER & SCROLL --- */
 function initModulesScroll() {
   const section = document.querySelector(".horizontal-scroll-section");
   const wrapper = document.querySelector(".horizontal-scroll-wrapper");
@@ -502,7 +493,6 @@ function initModulesScroll() {
   if (!section || !wrapper || !content) return;
 
   if (window.innerWidth > 1024) {
-    // Hide native scrollbar on desktop
     wrapper.style.overflowX = "hidden";
 
     const getScrollAmount = () => {
@@ -525,7 +515,6 @@ function initModulesScroll() {
   }
 }
 
-/* --- MOBILE MENU --- */
 function initMobileMenu() {
   const toggle = document.querySelector(".mobile-menu-toggle");
   const closeBtn = document.querySelector(".mobile-menu-close");
@@ -561,7 +550,6 @@ function initMobileMenu() {
     });
   });
 }
-/* --- AUDIO HANDLING --- */
 const audio = {
   tick: new Audio("public/Audio/clock-tick.mp3"),
   flip: new Audio("public/Audio/paper-flip.mp3"),
@@ -613,7 +601,7 @@ unlockEvents.forEach((event) => {
         });
       }
     },
-    { once: true, passive: true }
+    { once: true, passive: true },
   );
 });
 function isHeroVisible() {
