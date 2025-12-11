@@ -1604,10 +1604,13 @@ h4 {
   }
 }
 
-@media (max-width: 1280px) and (min-width: 769px) {
+@media (max-width: 1919px) and (min-width: 769px) {
   .hero-clock-img {
-    width: 90vw;
+    width: 85vw;
   }
+}
+
+@media (max-width: 1280px) and (min-width: 769px) {
   .magick-nav {
     padding: 0.8rem 1rem;
   }
@@ -1618,7 +1621,7 @@ h4 {
 
 @media (max-width: 1150px) and (min-width: 769px) {
   .hero-clock-img {
-    width: 80vw;
+    width: 80vw; /* Keep slightly smaller for high zoom collision avoidance */
   }
   .nav-links {
     gap: 1rem;
