@@ -1606,7 +1606,7 @@ h4 {
 
 @media (max-width: 1919px) and (min-width: 769px) {
   .hero-clock-img {
-    width: 85vw;
+    width: 72vw;
   }
 }
 
@@ -1621,7 +1621,7 @@ h4 {
 
 @media (max-width: 1150px) and (min-width: 769px) {
   .hero-clock-img {
-    width: 80vw; /* Keep slightly smaller for high zoom collision avoidance */
+    width: 70vw; /* Keep slightly smaller for high zoom collision avoidance */
   }
   .nav-links {
     gap: 1rem;
